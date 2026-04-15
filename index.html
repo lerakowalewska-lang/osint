@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LeadHunt — OSINT-лидогенерация для B2B</title>
+<title>HuntedLead — OSINT-лидогенерация для B2B</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -17,7 +17,7 @@
   <div class="header-inner">
     <a href="#" class="logo">
       <div class="logo-icon"></div>
-      LeadHunt
+      HuntedLead
     </a>
     <nav>
       <ul class="nav-links" id="navLinks">
@@ -92,35 +92,127 @@
   </section>
 
   <section class="how-section" id="how">
-    <div class="how-content">
-      <div class="section-tag">Процесс</div>
-      <h2 class="section-title">Как мы работаем</h2>
-      <div class="steps-grid">
-        <div class="step-card" data-delay="0">
-          <div class="step-number">01</div>
-          <h3>Вы задаёте цель</h3>
-          <p>Описываете вашего идеального клиента: ниша, должности, регион, любые дополнительные фильтры</p>
-        </div>
-        <div class="step-card" data-delay="150">
-          <div class="step-number">02</div>
-          <h3>Мы проводим разведку</h3>
-          <p>Находим компании, которые реально подходят, и вычисляем конкретных ЛПР — с именами и должностями</p>
-        </div>
-        <div class="step-card" data-delay="300">
-          <div class="step-number">03</div>
-          <h3>Собираем контакты</h3>
-          <p>Email, телефон, LinkedIn, Telegram — находим тех, кто ещё не заспамлен вашими конкурентами</p>
-        </div>
-        <div class="step-card" data-delay="450">
-          <div class="step-number">04</div>
-          <h3>Передаём вам список</h3>
-          <p>Клиенты, которые уже готовы к диалогу — с проверенными контактными данными</p>
-        </div>
+    <div class="how-split">
+
+      <div class="how-left">
+        <div class="section-tag">Процесс</div>
+        <h2 class="section-title">Как мы<br>работаем</h2>
       </div>
-      <div class="how-cta-box">
-        <p>Можем подключиться ещё глубже: <strong>выйти на контакт с лидами и организовать встречу.</strong></p>
-        <a href="#contact" class="btn-primary">Готовы обсудить?</a>
+
+      <div class="how-right">
+
+        <div class="how-step" data-delay="0">
+          <div class="how-step-icon">
+            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="40" r="30" stroke="rgba(59,125,255,0.2)" stroke-width="1"/>
+              <circle cx="40" cy="40" r="20" stroke="rgba(59,125,255,0.35)" stroke-width="1"/>
+              <circle cx="40" cy="40" r="9" stroke="#3b7dff" stroke-width="1.5"/>
+              <line x1="40" y1="5" x2="40" y2="18" stroke="rgba(59,125,255,0.5)" stroke-width="1"/>
+              <line x1="40" y1="62" x2="40" y2="75" stroke="rgba(59,125,255,0.5)" stroke-width="1"/>
+              <line x1="5"  y1="40" x2="18" y2="40" stroke="rgba(59,125,255,0.5)" stroke-width="1"/>
+              <line x1="62" y1="40" x2="75" y2="40" stroke="rgba(59,125,255,0.5)" stroke-width="1"/>
+              <circle cx="40" cy="40" r="2.5" fill="#3b7dff"/>
+            </svg>
+          </div>
+          <div class="how-step-body">
+            <span class="how-step-num">01</span>
+            <h3>Вы задаёте цель</h3>
+            <p>Описываете вашего идеального клиента: ниша, должности, регион, любые дополнительные фильтры</p>
+          </div>
+        </div>
+
+        <div class="how-step" data-delay="120">
+          <div class="how-step-icon">
+            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="40" cy="40" rx="30" ry="16" stroke="rgba(59,125,255,0.2)" stroke-width="1"/>
+              <ellipse cx="40" cy="40" rx="30" ry="16" stroke="rgba(59,125,255,0.12)" stroke-width="1" transform="rotate(60 40 40)"/>
+              <ellipse cx="40" cy="40" rx="30" ry="16" stroke="rgba(59,125,255,0.12)" stroke-width="1" transform="rotate(120 40 40)"/>
+              <circle cx="40" cy="40" r="30" stroke="rgba(59,125,255,0.25)" stroke-width="1"/>
+              <line x1="10" y1="40" x2="70" y2="40" stroke="rgba(59,125,255,0.12)" stroke-width="0.5"/>
+              <line x1="40" y1="10" x2="40" y2="70" stroke="rgba(59,125,255,0.12)" stroke-width="0.5"/>
+              <circle cx="54" cy="27" r="3.5" fill="#3b7dff" opacity="0.9"/>
+              <circle cx="54" cy="27" r="7"   stroke="#3b7dff" stroke-width="0.8" opacity="0.35"/>
+            </svg>
+          </div>
+          <div class="how-step-body">
+            <span class="how-step-num">02</span>
+            <h3>Мы проводим разведку</h3>
+            <p>Находим компании, которые реально подходят, и вычисляем конкретных ЛПР — с именами и должностями</p>
+          </div>
+        </div>
+
+        <div class="how-step" data-delay="240">
+          <div class="how-step-icon">
+            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="18" r="6"   stroke="#3b7dff" stroke-width="1.5" fill="rgba(59,125,255,0.1)"/>
+              <circle cx="18" cy="56" r="5"   stroke="rgba(59,125,255,0.6)" stroke-width="1" fill="rgba(59,125,255,0.06)"/>
+              <circle cx="62" cy="56" r="5"   stroke="rgba(59,125,255,0.6)" stroke-width="1" fill="rgba(59,125,255,0.06)"/>
+              <circle cx="40" cy="47" r="4"   stroke="rgba(59,125,255,0.45)" stroke-width="1" fill="rgba(59,125,255,0.06)"/>
+              <line x1="40" y1="24" x2="40" y2="43" stroke="rgba(59,125,255,0.4)" stroke-width="1"/>
+              <line x1="40" y1="43" x2="22" y2="52" stroke="rgba(59,125,255,0.3)" stroke-width="1"/>
+              <line x1="40" y1="43" x2="58" y2="52" stroke="rgba(59,125,255,0.3)" stroke-width="1"/>
+              <circle cx="40" cy="18" r="2.5" fill="#3b7dff"/>
+            </svg>
+          </div>
+          <div class="how-step-body">
+            <span class="how-step-num">03</span>
+            <h3>Собираем контакты</h3>
+            <p>Email, телефон, LinkedIn, Telegram — находим тех, кто ещё не заспамлен вашими конкурентами</p>
+          </div>
+        </div>
+
+        <div class="how-step" data-delay="360">
+          <div class="how-step-icon">
+            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="40,10 66,30 66,54 40,70 14,54 14,30" stroke="rgba(59,125,255,0.25)" stroke-width="1"/>
+              <polygon points="40,10 66,30 40,42 14,30" stroke="rgba(59,125,255,0.5)" stroke-width="1" fill="rgba(59,125,255,0.04)"/>
+              <polygon points="40,42 66,30 66,54 40,70" stroke="rgba(59,125,255,0.3)" stroke-width="1" fill="rgba(59,125,255,0.02)"/>
+              <polygon points="40,42 14,30 14,54 40,70" stroke="rgba(59,125,255,0.3)" stroke-width="1" fill="rgba(59,125,255,0.02)"/>
+              <line x1="40" y1="10" x2="40" y2="70" stroke="rgba(59,125,255,0.12)" stroke-width="0.5"/>
+              <circle cx="40" cy="40" r="2.5" fill="#3b7dff" opacity="0.8"/>
+            </svg>
+          </div>
+          <div class="how-step-body">
+            <span class="how-step-num">04</span>
+            <h3>Передаём вам список</h3>
+            <p>Клиенты, которые уже готовы к диалогу — с проверенными контактными данными</p>
+          </div>
+        </div>
+
       </div>
+    </div>
+  </section>
+
+  <section class="deeper-section">
+    <div class="deeper-wave" aria-hidden="true">
+      <svg class="deeper-wave-svg" viewBox="0 0 1400 400" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,200 C430,200 430,200 700,200 C970,200 970,200 1400,200" stroke="rgba(59,125,255,0.55)" stroke-width="1.5"/>
+        <path d="M0,188 C430,188 430,200 700,200 C970,200 970,188 1400,188" stroke="rgba(59,125,255,0.45)" stroke-width="1"/>
+        <path d="M0,212 C430,212 430,200 700,200 C970,200 970,212 1400,212" stroke="rgba(59,125,255,0.45)" stroke-width="1"/>
+        <path d="M0,173 C430,173 430,200 700,200 C970,200 970,173 1400,173" stroke="rgba(59,125,255,0.34)" stroke-width="0.9"/>
+        <path d="M0,227 C430,227 430,200 700,200 C970,200 970,227 1400,227" stroke="rgba(59,125,255,0.34)" stroke-width="0.9"/>
+        <path d="M0,155 C430,155 430,200 700,200 C970,200 970,155 1400,155" stroke="rgba(59,125,255,0.24)" stroke-width="0.8"/>
+        <path d="M0,245 C430,245 430,200 700,200 C970,200 970,245 1400,245" stroke="rgba(59,125,255,0.24)" stroke-width="0.8"/>
+        <path d="M0,133 C430,133 430,200 700,200 C970,200 970,133 1400,133" stroke="rgba(59,125,255,0.16)" stroke-width="0.7"/>
+        <path d="M0,267 C430,267 430,200 700,200 C970,200 970,267 1400,267" stroke="rgba(59,125,255,0.16)" stroke-width="0.7"/>
+        <path d="M0,108 C430,108 430,200 700,200 C970,200 970,108 1400,108" stroke="rgba(59,125,255,0.10)" stroke-width="0.6"/>
+        <path d="M0,292 C430,292 430,200 700,200 C970,200 970,292 1400,292" stroke="rgba(59,125,255,0.10)" stroke-width="0.6"/>
+        <path d="M0,80  C430,80  430,200 700,200 C970,200 970,80  1400,80"  stroke="rgba(59,125,255,0.07)" stroke-width="0.5"/>
+        <path d="M0,320 C430,320 430,200 700,200 C970,200 970,320 1400,320" stroke="rgba(59,125,255,0.07)" stroke-width="0.5"/>
+        <path d="M0,50  C430,50  430,200 700,200 C970,200 970,50  1400,50"  stroke="rgba(59,125,255,0.04)" stroke-width="0.5"/>
+        <path d="M0,350 C430,350 430,200 700,200 C970,200 970,350 1400,350" stroke="rgba(59,125,255,0.04)" stroke-width="0.5"/>
+        <path d="M0,18  C430,18  430,200 700,200 C970,200 970,18  1400,18"  stroke="rgba(59,125,255,0.02)" stroke-width="0.4"/>
+        <path d="M0,382 C430,382 430,200 700,200 C970,200 970,382 1400,382" stroke="rgba(59,125,255,0.02)" stroke-width="0.4"/>
+      </svg>
+    </div>
+    <div class="deeper-inner">
+      <div class="section-tag">Полный цикл</div>
+      <h2 class="deeper-title">Можем подключиться<br>ещё глубже</h2>
+      <p class="deeper-sub">Выйдем на контакт с лидами сами и организуем встречу — вы получаете готовый диалог, не потратив ни минуты на холодный аутрич</p>
+      <a href="#contact" class="btn-primary">
+        Обсудить формат
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
     </div>
   </section>
 
@@ -238,9 +330,9 @@
     <div class="footer-left">
       <a href="#" class="logo">
         <div class="logo-icon"></div>
-        LeadHunt
+        HuntedLead
       </a>
-      <p class="footer-copy">&copy; 2026 LeadHunt. Все права защищены.</p>
+      <p class="footer-copy">&copy; 2026 HuntedLead. Все права защищены.</p>
     </div>
     <ul class="footer-links">
       <li><a href="#how">Как работаем</a></li>
@@ -254,7 +346,7 @@
 <div class="modal-overlay" id="privacyModal">
   <div class="modal-box">
     <h2>Политика конфиденциальности</h2>
-    <p>Настоящая политика конфиденциальности определяет порядок обработки и защиты персональных данных пользователей сайта LeadHunt.</p>
+    <p>Настоящая политика конфиденциальности определяет порядок обработки и защиты персональных данных пользователей сайта HuntedLead.</p>
     <h3>1. Сбор данных</h3>
     <p>Мы собираем только те данные, которые вы предоставляете добровольно через форму заявки на сайте: имя и номер телефона.</p>
     <h3>2. Цели обработки</h3>
@@ -353,7 +445,7 @@ const observer = new IntersectionObserver((entries) => {
     }
   });
 }, observerOptions);
-document.querySelectorAll('.pain-item, .step-card, .faq-item, .price-card').forEach(el => observer.observe(el));
+document.querySelectorAll('.pain-item, .step-card, .how-step, .faq-item, .price-card').forEach(el => observer.observe(el));
 
 // ===== FAQ =====
 function toggleFaq(el) {

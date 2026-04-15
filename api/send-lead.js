@@ -16,7 +16,7 @@ export default async function handler(req, res) {
   const now = new Date();
   const dateStr = now.toLocaleString('ru-RU', { timeZone: 'Europe/Moscow' });
 
-  const text = `🔥 *Новая заявка с сайта LeadHunt*\n\n👤 *Имя:* ${name}\n📞 *Телефон:* ${phone}\n🕐 *Время:* ${dateStr} (МСК)`;
+  const text = `🔥 *Новая заявка с сайта HuntedLead*\n\n👤 *Имя:* ${name}\n📞 *Телефон:* ${phone}\n🕐 *Время:* ${dateStr} (МСК)`;
 
   try {
     const tgResponse = await fetch(
