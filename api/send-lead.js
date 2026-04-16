@@ -36,7 +36,7 @@ export default async function handler(req, res) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          access_key: 'b19e7dd9-9b38-4009-a408-10fe3764d836',
+          access_key: '5090c20e-e3ed-4d8b-b5d2-5009b600bf4a',
           name,
           phone,
           subject: 'Новая заявка с сайта HuntedLead',
