@@ -18,8 +18,8 @@ function checkRateLimit(ip) {
   return true;
 }
 
-function escapeMd(str) {
-  return str.replace(/[_*[\]()~`>#+\-=|{}.!\\]/g, '\\$&');
+function sanitize(str) {
+  return str.replace(/[<>&]/g, '');
 }
 
 const TG_CHAT_ID = '-5268453636';
@@ -70,10 +70,10 @@ export default async function handler(req, res) {
   const now = new Date();
   const dateStr = now.toLocaleString('ru-RU', { timeZone: 'Europe/Moscow' });
 
-  const safeName = escapeMd(name.trim());
-  const safePhone = escapeMd(phone.trim());
+  const safeName = sanitize(name.trim());
+  const safePhone = sanitize(phone.trim());
 
-  const text = `🔥 *Новая заявка с сайта HuntedLead*\n\n👤 *Имя:* ${safeName}\n📞 *Телефон:* ${safePhone}\n🕐 *Время:* ${dateStr} (МСК)`;
+  const text = `🔥 Новая заявка с сайта HuntedLead\n\n👤 Имя: ${safeName}\n📞 Телефон: ${safePhone}\n🕐 Время: ${dateStr} (МСК)`;
 
   const telegramReq = fetch(
     `https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`,
@@ -83,7 +83,6 @@ export default async function handler(req, res) {
       body: JSON.stringify({
         chat_id: TG_CHAT_ID,
         text,
-        parse_mode: 'MarkdownV2',
       }),
     }
   );
