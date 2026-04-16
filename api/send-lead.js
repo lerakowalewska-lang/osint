@@ -45,17 +45,26 @@ export default async function handler(req, res) {
       }),
     ]);
 
-    const tgData = await tgResponse.json();
-    const w3fData = await w3fResponse.json();
+    let tgOk = false;
+    let w3fOk = false;
 
-    if (!tgData.ok) {
-      console.error('Telegram API error:', tgData.description);
-    }
-    if (!w3fData.success) {
-      console.error('Web3Forms error:', w3fData.message);
+    try {
+      const tgData = await tgResponse.json();
+      tgOk = !!tgData.ok;
+      if (!tgOk) console.error('Telegram API error:', tgData.description);
+    } catch (e) {
+      console.error('Telegram response parse error:', e.message);
     }
 
-    if (tgData.ok || w3fData.success) {
+    try {
+      const w3fData = await w3fResponse.json();
+      w3fOk = !!w3fData.success;
+      if (!w3fOk) console.error('Web3Forms error:', w3fData.message, '| status:', w3fResponse.status);
+    } catch (e) {
+      console.error('Web3Forms response parse error:', e.message, '| status:', w3fResponse.status);
+    }
+
+    if (tgOk || w3fOk) {
       return res.status(200).json({ success: true });
     } else {
       return res.status(500).json({ error: 'Failed to send message' });
