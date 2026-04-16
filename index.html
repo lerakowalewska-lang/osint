@@ -518,19 +518,33 @@ async function submitForm() {
   btn.innerHTML = '<span style="animation: pulse 1s infinite">Отправка...</span>';
 
   try {
-    const response = await fetch('/api/send-lead', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, phone })
-    });
+    const formData = new FormData();
+    formData.append('access_key', '5090c20e-e3ed-4d8b-b5d2-5009b600bf4a');
+    formData.append('name', name);
+    formData.append('phone', phone);
+    formData.append('subject', 'Новая заявка с сайта HuntedLead');
+    formData.append('from_name', 'HuntedLead');
 
-    const data = await response.json();
+    const [tgResponse, w3fResponse] = await Promise.all([
+      fetch('/api/send-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, phone })
+      }),
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData
+      })
+    ]);
 
-    if (data.success) {
+    const tgData = await tgResponse.json();
+    const w3fData = await w3fResponse.json();
+
+    if (tgData.success || w3fData.success) {
       document.getElementById('leadForm').style.display = 'none';
       document.getElementById('formSuccess').classList.add('active');
     } else {
-      throw new Error(data.error || 'Server error');
+      throw new Error(tgData.error || w3fData.message || 'Server error');
     }
   } catch (err) {
     console.error('Submit error:', err);

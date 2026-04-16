@@ -19,54 +19,25 @@ export default async function handler(req, res) {
   const text = `🔥 *Новая заявка с сайта HuntedLead*\n\n👤 *Имя:* ${name}\n📞 *Телефон:* ${phone}\n🕐 *Время:* ${dateStr} (МСК)`;
 
   try {
-    const [tgResponse, w3fResponse] = await Promise.all([
-      fetch(
-        `https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`,
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            chat_id: TG_CHAT_ID,
-            text: text,
-            parse_mode: 'Markdown',
-          }),
-        }
-      ),
-      fetch('https://api.web3forms.com/submit', {
+    const tgResponse = await fetch(
+      `https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`,
+      {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          access_key: '5090c20e-e3ed-4d8b-b5d2-5009b600bf4a',
-          name,
-          phone,
-          subject: 'Новая заявка с сайта HuntedLead',
-          from_name: 'HuntedLead',
+          chat_id: TG_CHAT_ID,
+          text: text,
+          parse_mode: 'Markdown',
         }),
-      }),
-    ]);
+      }
+    );
 
-    let tgOk = false;
-    let w3fOk = false;
+    const tgData = await tgResponse.json();
 
-    try {
-      const tgData = await tgResponse.json();
-      tgOk = !!tgData.ok;
-      if (!tgOk) console.error('Telegram API error:', tgData.description);
-    } catch (e) {
-      console.error('Telegram response parse error:', e.message);
-    }
-
-    try {
-      const w3fData = await w3fResponse.json();
-      w3fOk = !!w3fData.success;
-      if (!w3fOk) console.error('Web3Forms error:', w3fData.message, '| status:', w3fResponse.status);
-    } catch (e) {
-      console.error('Web3Forms response parse error:', e.message, '| status:', w3fResponse.status);
-    }
-
-    if (tgOk || w3fOk) {
+    if (tgData.ok) {
       return res.status(200).json({ success: true });
     } else {
+      console.error('Telegram API error:', tgData.description);
       return res.status(500).json({ error: 'Failed to send message' });
     }
   } catch (err) {
