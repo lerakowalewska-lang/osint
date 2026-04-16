@@ -23,7 +23,7 @@ function escapeMd(str) {
 }
 
 const TG_CHAT_ID = '-5268453636';
-const ALLOWED_ORIGINS = ['https://huntedlead.ru', 'https://www.huntedlead.ru'];
+const ALLOWED_ORIGINS = ['https://huntedlead.com', 'https://www.huntedlead.com'];
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
