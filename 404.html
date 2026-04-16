@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — Цель не найдена | HuntedLead</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta name="robots" content="noindex, nofollow">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg-deep: #06091a;
+    --bg-primary: #0a0e27;
+    --accent-blue: #3b7dff;
+    --accent-blue-glow: rgba(59, 125, 255, 0.3);
+    --accent-yellow: #ffd84d;
+    --text-primary: #e8ecf4;
+    --text-secondary: rgba(232, 236, 244, 0.6);
+    --text-muted: rgba(232, 236, 244, 0.35);
+    --border: rgba(59, 125, 255, 0.15);
+    --border-bright: rgba(59, 125, 255, 0.35);
+    --font-display: 'Outfit', sans-serif;
+    --font-body: 'Space Grotesk', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  html, body {
+    height: 100%;
+    background: var(--bg-deep);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    overflow: hidden;
+  }
+
+  canvas#bg-canvas {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .page {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  /* ---- Scan lines overlay ---- */
+  .page::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(59, 125, 255, 0.018) 2px,
+      rgba(59, 125, 255, 0.018) 4px
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ---- Terminal window ---- */
+  .terminal {
+    position: relative;
+    z-index: 1;
+    background: rgba(10, 14, 39, 0.7);
+    border: 1px solid var(--border-bright);
+    border-radius: 16px;
+    padding: 2.5rem 3rem 3rem;
+    max-width: 600px;
+    width: 100%;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 60px rgba(59, 125, 255, 0.08), 0 0 120px rgba(59, 125, 255, 0.04);
+  }
+
+  .terminal-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .terminal-dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+  }
+  .terminal-dot:nth-child(1) { background: #ff5f57; }
+  .terminal-dot:nth-child(2) { background: #febc2e; }
+  .terminal-dot:nth-child(3) { background: #28c840; }
+
+  .terminal-title {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-left: 0.5rem;
+  }
+
+  /* ---- 404 glitch ---- */
+  .code-404 {
+    font-family: var(--font-display);
+    font-size: clamp(5rem, 18vw, 9rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--accent-blue);
+    text-shadow: 0 0 40px rgba(59, 125, 255, 0.6), 0 0 80px rgba(59, 125, 255, 0.3);
+    animation: glitch 3.5s infinite;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+  }
+
+  .code-404::before,
+  .code-404::after {
+    content: '404';
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+  }
+  .code-404::before {
+    color: #ff2d6e;
+    animation: glitch-r 3.5s infinite;
+    clip-path: polygon(0 30%, 100% 30%, 100% 50%, 0 50%);
+  }
+  .code-404::after {
+    color: var(--accent-yellow);
+    animation: glitch-l 3.5s 0.05s infinite;
+    clip-path: polygon(0 55%, 100% 55%, 100% 70%, 0 70%);
+  }
+
+  @keyframes glitch {
+    0%, 90%, 100% { transform: translate(0); filter: none; }
+    92%  { transform: translate(-3px, 1px); filter: hue-rotate(10deg); }
+    94%  { transform: translate(3px, -1px); }
+    96%  { transform: translate(-2px, 2px); }
+    98%  { transform: translate(2px, -2px); }
+  }
+  @keyframes glitch-r {
+    0%, 90%, 100% { opacity: 0; transform: translate(0); }
+    92%  { opacity: 0.7; transform: translate(4px, 0); }
+    94%  { opacity: 0; }
+    96%  { opacity: 0.5; transform: translate(-4px, 0); }
+    98%  { opacity: 0; }
+  }
+  @keyframes glitch-l {
+    0%, 90%, 100% { opacity: 0; transform: translate(0); }
+    93%  { opacity: 0.6; transform: translate(-3px, 0); }
+    95%  { opacity: 0; }
+    97%  { opacity: 0.4; transform: translate(3px, 0); }
+    99%  { opacity: 0; }
+  }
+
+  /* ---- Typing subtitle ---- */
+  .scan-status {
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    color: var(--accent-yellow);
+    min-height: 1.5em;
+    margin-bottom: 1.5rem;
+  }
+
+  .cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    background: var(--accent-yellow);
+    vertical-align: middle;
+    margin-left: 2px;
+    animation: blink 0.9s step-end infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  /* ---- Body text ---- */
+  .error-heading {
+    font-family: var(--font-display);
+    font-size: clamp(1.1rem, 3vw, 1.4rem);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+  }
+
+  .error-desc {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ---- Log lines ---- */
+  .log-lines {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-align: left;
+    background: rgba(6, 9, 26, 0.6);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 2rem;
+    line-height: 1.8;
+  }
+
+  .log-line { display: block; }
+  .log-ok   { color: #28c840; }
+  .log-warn { color: var(--accent-yellow); }
+  .log-err  { color: #ff5f57; }
+
+  /* ---- CTA button ---- */
+  .btn-home {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2.2rem;
+    background: var(--accent-blue);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.35s ease;
+    box-shadow: 0 4px 30px var(--accent-blue-glow), inset 0 1px 0 rgba(255,255,255,0.1);
+    text-decoration: none;
+  }
+  .btn-home:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 40px rgba(59, 125, 255, 0.5), inset 0 1px 0 rgba(255,255,255,0.15);
+  }
+  .btn-home svg {
+    width: 18px; height: 18px;
+    flex-shrink: 0;
+  }
+
+  /* ---- Logo ---- */
+  .logo {
+    position: absolute;
+    top: 1.75rem;
+    left: 2rem;
+    display: block;
+    opacity: 0.75;
+    transition: opacity 0.2s;
+    line-height: 0;
+  }
+  .logo:hover { opacity: 1; }
+  .logo img { height: 28px; width: auto; display: block; }
+
+  @media (max-width: 520px) {
+    .terminal { padding: 2rem 1.5rem 2.5rem; }
+    .log-lines { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+
+<a href="/" class="logo" aria-label="HuntedLead — на главную">
+  <img src="/logo.svg" alt="HuntedLead">
+</a>
+
+<main class="page">
+  <div class="terminal">
+    <div class="terminal-bar">
+      <span class="terminal-dot"></span>
+      <span class="terminal-dot"></span>
+      <span class="terminal-dot"></span>
+      <span class="terminal-title">huntedlead — scan.sh</span>
+    </div>
+
+    <div class="code-404">404</div>
+
+    <div class="scan-status" id="scanStatus"><span class="cursor"></span></div>
+
+    <h1 class="error-heading">Цель не обнаружена</h1>
+    <p class="error-desc">
+      Страница была перемещена, удалена или никогда не существовала.
+      OSINT-разведка по данному адресу ничего не выявила.
+    </p>
+
+    <div class="log-lines" aria-hidden="true">
+      <span class="log-line"><span class="log-ok">[OK]</span>  Подключение к серверу установлено</span>
+      <span class="log-line"><span class="log-ok">[OK]</span>  DNS-резолюция пройдена</span>
+      <span class="log-line"><span class="log-warn">[--]</span> Сканирование маршрута...</span>
+      <span class="log-line"><span class="log-err">[ERR]</span> Объект по адресу не найден — код 404</span>
+    </div>
+
+    <a href="/" class="btn-home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19 12H5M12 5l-7 7 7 7"/>
+      </svg>
+      Вернуться на главную
+    </a>
+  </div>
+</main>
+
+<script>
+// ===== PARTICLE BACKGROUND =====
+(function() {
+  const canvas = document.getElementById('bg-canvas');
+  const ctx = canvas.getContext('2d');
+  let w, h, particles = [], mouse = { x: -1000, y: -1000 };
+  const PARTICLE_COUNT = 120;
+  const CONNECT_DIST = 140;
+
+  function resize() { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
+
+  function createParticles() {
+    particles = [];
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      particles.push({
+        x: Math.random() * w, y: Math.random() * h, z: Math.random() * 0.5 + 0.5,
+        vx: (Math.random() - 0.5) * 0.4, vy: (Math.random() - 0.5) * 0.4, size: Math.random() * 2 + 1
+      });
+    }
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    ctx.strokeStyle = 'rgba(59, 125, 255, 0.04)';
+    ctx.lineWidth = 1;
+    const gs = 60;
+    for (let x = 0; x < w; x += gs) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke(); }
+    for (let y = 0; y < h; y += gs) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke(); }
+
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0) p.x = w; if (p.x > w) p.x = 0;
+      if (p.y < 0) p.y = h; if (p.y > h) p.y = 0;
+      const dx = p.x - mouse.x, dy = p.y - mouse.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 150) { p.x += dx * 0.01; p.y += dy * 0.01; }
+      const alpha = 0.15 + p.z * 0.4;
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.size * p.z, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(59, 125, 255, ${alpha})`; ctx.fill();
+      for (let j = i + 1; j < particles.length; j++) {
+        const p2 = particles[j];
+        const ddx = p.x - p2.x, ddy = p.y - p2.y;
+        const d = Math.sqrt(ddx * ddx + ddy * ddy);
+        if (d < CONNECT_DIST) {
+          ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(p2.x, p2.y);
+          ctx.strokeStyle = `rgba(59, 125, 255, ${(1 - d / CONNECT_DIST) * 0.1})`;
+          ctx.lineWidth = 0.5; ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', () => { resize(); createParticles(); });
+  document.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+  resize(); createParticles(); draw();
+})();
+
+// ===== TYPING ANIMATION =====
+(function() {
+  const el = document.getElementById('scanStatus');
+  const text = '> ЦЕЛЬ НЕ НАЙДЕНА. ПЕРЕЗАПУСК...';
+  let i = 0;
+
+  function type() {
+    if (i < text.length) {
+      el.innerHTML = text.slice(0, i + 1) + '<span class="cursor"></span>';
+      i++;
+      setTimeout(type, 55 + Math.random() * 40);
+    } else {
+      // pause, then blink cursor stays
+      el.innerHTML = text + '<span class="cursor"></span>';
+    }
+  }
+
+  setTimeout(type, 600);
+})();
+</script>
+
+</body>
+</html>
