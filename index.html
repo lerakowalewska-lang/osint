@@ -9,6 +9,28 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles/main.css">
 
+<!-- FAQPage Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"Это вообще легально?","acceptedAnswer":{"@type":"Answer","text":"Да, на 100% легально. Мы работаем только с открытыми источниками — сайты компаний, соцсети, реестры, публичные профили. Никаких серых зон."}},
+    {"@type":"Question","name":"Сколько контактов ЛПР вы можете обеспечить?","acceptedAnswer":{"@type":"Answer","text":"Зависит от ниши и сложности. Но в среднем — 100 контактов за 1–2 недели. Для нишевых рынков объём может быть меньше, зато качество — выше."}},
+    {"@type":"Question","name":"Что если в моей нише очень мало публичной информации?","acceptedAnswer":{"@type":"Answer","text":"Если у вас сложные и нетипичные ICP — тем интереснее. Мы любим задачи со звёздочкой. Напишите нам, и мы оценим возможности бесплатно."}},
+    {"@type":"Question","name":"Что такое OSINT и как вы его используете?","acceptedAnswer":{"@type":"Answer","text":"OSINT (Open Source Intelligence) — это сбор информации из открытых источников: сайты, соцсети, реестры, профессиональные базы. Мы используем OSINT-технологии, чтобы найти нужных людей и их контакты без серых схем и без покупки слитых баз."}},
+    {"@type":"Question","name":"Чем вы отличаетесь от классической лидогенерации?","acceptedAnswer":{"@type":"Answer","text":"Классическая лидогенерация — это массовость: купить базу, запустить кампанию, получить много шума и мало результата. Мы работаем точечно: сначала находим конкретного ЛПР под ваш ICP, проверяем контакт и только потом передаём."}},
+    {"@type":"Question","name":"В каких нишах вы работаете?","acceptedAnswer":{"@type":"Answer","text":"B2B любой сложности: производство, IT, промышленный аутсорс, профессиональные услуги (юристы, аудит, консалтинг), SaaS, логистика."}},
+    {"@type":"Question","name":"Сколько стоит лидогенерация?","acceptedAnswer":{"@type":"Answer","text":"Посмотреть тарифы можно в разделе «Формат работы» на этой странице."}},
+    {"@type":"Question","name":"Делаете ли вы холодный аутрич?","acceptedAnswer":{"@type":"Answer","text":"Да. Холодный аутрич — отдельная услуга: мы сами пишем письма, настраиваем email-аутрич-последовательности и выходим на контакт с лидами. Вы подключаетесь только тогда, когда человек ответил и готов к диалогу."}},
+    {"@type":"Question","name":"Что такое appointment setting?","acceptedAnswer":{"@type":"Answer","text":"Это когда мы не просто даём список контактов, а доводим каждый лид до подтверждённой встречи с ЛПР. Мы сами договариваемся о времени звонка или встречи — вы получаете готовый слот в календаре."}},
+    {"@type":"Question","name":"Какие гарантии результата?","acceptedAnswer":{"@type":"Answer","text":"Гарантируем качество контактов — все передаются верифицированными. По количеству: называем реалистичные цифры на старте, исходя из вашей ниши. Если понимаем, что рынок не позволяет — честно скажем до начала, не после."}},
+    {"@type":"Question","name":"Можно ли работать по NDA?","acceptedAnswer":{"@type":"Answer","text":"Да, это стандартная практика. Подписываем NDA до начала работы. Ни ваше название, ни детали проекта не используем в кейсах и публичных материалах без вашего явного согласия."}},
+    {"@type":"Question","name":"Какие каналы используете?","acceptedAnswer":{"@type":"Answer","text":"Email, LinkedIn, Telegram и другие — в зависимости от того, где активен конкретный человек. OSINT помогает понять, в каком канале у вас больше шансов получить ответ."}}
+  ]
+}
+</script>
+
 <!-- Webmaster yandex-->
 <meta name="yandex-verification" content="6d3543e8a81e042b" />
 
@@ -197,9 +219,9 @@
         <!-- Right: image placeholder -->
         <div class="features-visual">
           <div class="features-image-wrap">
-            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80" alt="OSINT разведка по открытым источникам" class="active">
-            <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&q=80" alt="Отличие от обычной лидогенерации">
-            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80" alt="Точечный поиск ЛПР">
+            <img src="images/разведка.png" alt="OSINT разведка по открытым источникам" class="active">
+            <img src="images/проверка.png" alt="Отличие от обычной лидогенерации">
+            <img src="images/цель.png" alt="Точечный поиск ЛПР">
           </div>
         </div>
 
@@ -398,41 +420,64 @@
   <!-- ===== SCREEN 7 — CONTACTS INFO ===== -->
   <section class="contacts-info-section" id="contacts-info">
     <div class="contacts-info-inner">
-      <div class="contacts-info-header">
-        <div class="section-tag">Контакты</div>
-        <h2 class="section-title">Обсудим ваш проект?</h2>
-        <p class="cta-subtitle">Напишите — разберём задачу и&nbsp;честно скажем, поможет&nbsp;ли наш подход.</p>
-      </div>
-      <div class="contacts-info-grid">
+      <div class="contacts-info-layout">
 
-        <div class="contact-info-card" data-delay="0">
-          <div class="contact-icon">
-            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <!-- Left: heading + links -->
+        <div class="contacts-info-left">
+          <div class="section-tag">Контакты</div>
+          <h2 class="section-title">Обсудим ваш&nbsp;проект?</h2>
+          <p class="contacts-info-sub">Напишите — разберём задачу и&nbsp;честно скажем, поможет&nbsp;ли наш подход.</p>
+          <div class="contacts-links">
+            <a href="#" class="contacts-link">
+              <div class="contacts-link-icon">
+                <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div class="contacts-link-body">
+                <span class="contacts-link-title">Email</span>
+                <span class="contacts-link-desc">Для официальных запросов и&nbsp;NDA&#8209;переписки</span>
+              </div>
+            </a>
+            <a href="#" class="contacts-link">
+              <div class="contacts-link-icon">
+                <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              </div>
+              <div class="contacts-link-body">
+                <span class="contacts-link-title">Telegram</span>
+                <span class="contacts-link-desc">Быстрый способ задать вопрос прямо сейчас</span>
+              </div>
+            </a>
           </div>
-          <h3>Email</h3>
-          <p>Для официальных запросов и&nbsp;NDA&#8209;переписки</p>
-          <a href="#contact" class="btn-secondary">Написать на email</a>
         </div>
 
-        <div class="contact-info-card featured" data-delay="120">
-          <div class="contact-icon">
-            <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        <!-- Right: form -->
+        <div class="contacts-info-right" data-delay="150">
+          <div class="contacts-form-card">
+            <h3 class="contacts-form-title">Оставить заявку</h3>
+            <p class="contacts-form-sub">Расскажите, кто ваш клиент — мы скажем, за&nbsp;сколько сможем его найти</p>
+            <div id="contactsFormContainer">
+              <div class="cta-form" id="contactsLeadForm">
+                <div class="form-group">
+                  <input type="text" id="contactsName" placeholder="Ваше имя" required autocomplete="name">
+                </div>
+                <div class="form-group">
+                  <input type="tel" id="contactsPhone" placeholder="Телефон" required autocomplete="tel">
+                </div>
+                <div class="form-submit">
+                  <button class="btn-primary" onclick="submitContactsForm()" id="contactsSubmitBtn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                    Отправить заявку
+                  </button>
+                </div>
+                <div class="form-error" id="contactsFormError">Не удалось отправить заявку. Попробуйте ещё раз или свяжитесь с нами напрямую.</div>
+                <p class="form-note">Нажимая кнопку, вы соглашаетесь с&nbsp;<a href="#" onclick="openPrivacy(event)">политикой конфиденциальности</a></p>
+              </div>
+              <div class="form-success" id="contactsFormSuccess">
+                <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                <h3>Заявка отправлена!</h3>
+                <p>Мы свяжемся с вами в ближайшее время</p>
+              </div>
+            </div>
           </div>
-          <h3>Оставить заявку</h3>
-          <p>Расскажите, кто ваш клиент — мы скажем, за&nbsp;сколько сможем его найти</p>
-          <a href="#contact" class="btn-primary">
-            Оставить заявку
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-          </a>
-        </div>
-
-        <div class="contact-info-card" data-delay="240">
-          <div class="contact-icon">
-            <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-          </div>
-          <h3>Telegram</h3>
-          <p>Быстрый способ задать вопрос прямо сейчас</p>
-          <a href="#contact" class="btn-secondary">Написать в Telegram</a>
         </div>
 
       </div>
@@ -731,7 +776,7 @@ const observer = new IntersectionObserver((entries) => {
     }
   });
 }, observerOptions);
-document.querySelectorAll('.pain-item, .step-card, .how-step, .faq-item, .price-card, .feature-item, .why-card, .contact-info-card').forEach(el => observer.observe(el));
+document.querySelectorAll('.pain-item, .step-card, .how-step, .faq-item, .price-card, .feature-item, .why-card, .contacts-info-right').forEach(el => observer.observe(el));
 
 // ===== FAQ =====
 function toggleFaq(el) {
@@ -799,6 +844,64 @@ async function submitForm() {
   }
 }
 
+// ===== CONTACTS SECTION FORM =====
+async function submitContactsForm() {
+  const name = document.getElementById('contactsName').value.trim();
+  const phone = document.getElementById('contactsPhone').value.trim();
+  const errorEl = document.getElementById('contactsFormError');
+  errorEl.classList.remove('active');
+
+  if (!name || !phone) {
+    if (!name) document.getElementById('contactsName').style.borderColor = '#ef4444';
+    if (!phone) document.getElementById('contactsPhone').style.borderColor = '#ef4444';
+    setTimeout(() => {
+      document.getElementById('contactsName').style.borderColor = '';
+      document.getElementById('contactsPhone').style.borderColor = '';
+    }, 2000);
+    return;
+  }
+
+  const btn = document.getElementById('contactsSubmitBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<span style="animation: pulse 1s infinite">Отправка...</span>';
+
+  try {
+    const formData = new FormData();
+    formData.append('access_key', 'b19e7dd9-9b38-4009-a408-10fe3764d836');
+    formData.append('name', name);
+    formData.append('phone', phone);
+    formData.append('subject', 'Новая заявка с сайта HuntedLead');
+    formData.append('from_name', 'HuntedLead');
+
+    const [tgResponse, w3fResponse] = await Promise.all([
+      fetch('/api/send-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, phone })
+      }),
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData
+      })
+    ]);
+
+    const tgData = await tgResponse.json();
+    const w3fData = await w3fResponse.json();
+
+    if (tgData.success || w3fData.success) {
+      document.getElementById('contactsLeadForm').style.display = 'none';
+      document.getElementById('contactsFormSuccess').classList.add('active');
+    } else {
+      throw new Error(tgData.error || w3fData.message || 'Server error');
+    }
+  } catch (err) {
+    console.error('Submit error:', err);
+    errorEl.classList.add('active');
+    btn.disabled = false;
+    btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Отправить заявку';
+  }
+}
+
 // ===== PRIVACY MODAL =====
 function openPrivacy(e) {
   e.preventDefault();
@@ -813,8 +916,8 @@ document.getElementById('privacyModal').addEventListener('click', function(e) {
   if (e.target === this) closePrivacy();
 });
 
-// ===== WHY CARDS MOUSE GLOW =====
-document.querySelectorAll('.why-card').forEach(card => {
+// ===== MOUSE GLOW (why-cards + price-cards) =====
+document.querySelectorAll('.why-card, .price-card').forEach(card => {
   card.addEventListener('mousemove', (e) => {
     const rect = card.getBoundingClientRect();
     card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
