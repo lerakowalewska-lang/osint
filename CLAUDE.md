@@ -2,29 +2,41 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+
 ## Project Overview
 
-**HuntedLead** — статический одностраничный маркетинговый сайт для OSINT-лидогенерации. Развёртывается на Vercel как статика + одна Serverless Function.
+**HuntedLead** — многостраничный маркетинговый сайт для OSINT-лидогенерации. Развёртывается на Vercel как статика + одна Serverless Function. Сайт SEO-оптимизирован: отраслевые страницы под ключевые запросы, JSON-LD схемы, canonical URL, sitemap.
 
 ## Architecture
 
 Проект минималистичен и не использует фреймворков или систем сборки:
 
-- `index.html` — весь сайт: разметка и весь клиентский JavaScript в одном файле
-- `styles/main.css` — все CSS-стили (CSS custom properties, без препроцессоров)
+- `index.html` — главная страница: разметка и весь клиентский JavaScript в одном файле
+- `industry-it.html` — отраслевая страница для IT-компаний и SaaS (`/industry-it`)
+- `404.html` — кастомная страница ошибки 404 (помечена `noindex`)
+- `styles/main.css` — все CSS-стили (CSS custom properties, без препроцессоров); используется на всех страницах
 - `api/send-lead.js` — единственная Serverless Function (Vercel), обрабатывает POST-запрос с формы и отправляет заявку в Telegram-бот; использует ES Module синтаксис (`export default`)
 - `images/` — изображения для секции features: `разведка.png`, `проверка.png`, `цель.png`
 - `logo.svg` — единственный логотип, всегда использовать только его
 - `sitemap.xml` / `robots.txt` — SEO-файлы в корне; `robots.txt` статический, `sitemap.xml` генерируется скриптом
 - `scripts/generate-sitemap.js` — генератор sitemap: редактировать массив `pages` внутри, затем запустить `node scripts/generate-sitemap.js`
 
-**Data flow заявки (две формы, оба канала):**
+**Data flow заявки (форма на каждой странице):**
 ```
-Форма (index.html) → POST /api/send-lead → Telegram Bot API → Telegram-чат
-                   → web3forms API (резервный канал)
+Форма (любая страница) → POST /api/send-lead → Telegram Bot API → Telegram-чат
+                       → web3forms API (резервный канал)
 ```
+Поле `source` в теле запроса передаёт идентификатор страницы (например `'industry-it'`), чтобы в Telegram было видно, откуда пришла заявка.
 
-## Page Structure (section order)
+## Pages
+
+| Файл | URL | Статус | Индексация |
+|---|---|---|---|
+| `index.html` | `/` | Живая | Да |
+| `industry-it.html` | `/industry-it` | Живая | Да |
+| `404.html` | `/404` | Живая | Нет (noindex) |
+
+### Структура главной страницы (`index.html`)
 
 1. `#hero` — Hero
 2. `#pain` — Pain points grid
@@ -37,6 +49,26 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 9. `#cases` — Cases
 10. `#pricing` — Pricing (3 карточки)
 11. `#contact` — Основная форма заявки (CTA секция)
+
+### Структура отраслевых страниц (`industry-*.html`)
+
+Шаблон страницы для конкретной отрасли. Секции:
+1. `#hero` — Hero с отраслевым H1 и подзаголовком
+2. `#pain` — Pain points, специфичные для отрасли
+3. `#osint` — Features slider (3 фичи, те же изображения)
+4. `#how` — How it works (шаги, адаптированный пример для отрасли)
+5. Deeper CTA (без id)
+6. `#services` — Услуги (`.services-grid` с `.service-card`)
+7. `#why` — Why us (bento grid)
+8. `#faq` — FAQ, специфичный для отрасли
+9. `#pricing` — Pricing (те же 3 тарифа)
+10. `#contact` — Форма заявки
+
+**SEO на отраслевых страницах:**
+- Уникальные `<title>`, `<meta description>`, Open Graph теги
+- `<link rel="canonical">` на саму страницу
+- JSON-LD: `FAQPage` + `BreadcrumbList` + `ProfessionalService`
+- `source` в форме = slug страницы (например `'industry-it'`)
 
 ## Development
 
@@ -83,10 +115,14 @@ vercel dev
 
 **Фоновая анимация** — `<canvas id="bg-canvas">` с 3D-particle эффектом на нативном Canvas API.
 
-**Две независимые формы:**
+**Формы на главной (index.html) — две независимые:**
 - `#leadForm` / `#userPhone` / `#userName` → `submitForm()` — основная форма (`#contact`)
 - `#contactsLeadForm` / `#contactsPhone` / `#contactsName` → `submitContactsForm()` — форма в секции `#contacts-info`
 - Обе функции идентичны по логике, отличаются только ID элементов.
+
+**Форма на отраслевых страницах — одна:**
+- `#leadForm` / `#userPhone` / `#userName` → `submitForm()` — единственная форма в `#contact`
+- Передаёт `source: 'industry-it'` (или slug конкретной страницы) в тело запроса `/api/send-lead`
 
 **Телефонная маска** — `keydown`-based (не `input` event), функции `phoneMask(input)` и `setupPhoneMask(input)`:
 - Формат `+7 (XXX) XXX-XX-XX`, только российские номера
