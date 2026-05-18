@@ -1,4 +1,4 @@
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+﻿*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
   --bg-deep: #06091a;
@@ -46,6 +46,7 @@ body {
   top: 0; left: 0; right: 0;
   z-index: 1000;
   padding: 1rem 2rem;
+  -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
   background: rgba(6, 9, 26, 0.7);
   border-bottom: 1px solid var(--border);
@@ -156,28 +157,31 @@ body {
 .nav-dropdown-menu {
   list-style: none;
   position: absolute;
-  top: calc(100% + 14px);
+  top: calc(100% + 8px);
   left: 50%;
-  transform: translateX(-50%) translateY(-6px);
+  transform: translateX(-50%);
   min-width: 190px;
   background: rgba(6, 9, 26, 0.97);
   border: 1px solid var(--border-bright);
   border-radius: 10px;
   padding: 0.4rem 0;
+  -webkit-backdrop-filter: blur(24px);
   backdrop-filter: blur(24px);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
   z-index: 200;
+  /* max-height approach — надёжно работает в Safari вместо visibility+opacity+transform */
+  max-height: 0;
+  overflow: hidden;
   opacity: 0;
-  visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+  transition: max-height 0.25s ease, opacity 0.2s ease;
 }
 .nav-dropdown.open .nav-dropdown-menu {
+  max-height: 300px;
   opacity: 1;
-  visibility: visible;
   pointer-events: auto;
-  transform: translateX(-50%) translateY(0);
 }
+.nav-dropdown-menu li { list-style: none; }
 .nav-dropdown-menu a {
   display: block;
   padding: 0.6rem 1.1rem;
@@ -399,6 +403,7 @@ section {
   border-radius: 14px;
   transition: all 0.4s ease;
   text-align: left;
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   opacity: 0;
   transform: translateY(20px);
@@ -621,6 +626,7 @@ section {
   border-radius: 14px;
   overflow: hidden;
   transition: all 0.3s;
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   opacity: 0;
   transform: translateY(20px);
@@ -661,6 +667,7 @@ section {
   border: 1px solid var(--border);
   border-radius: 20px;
   text-align: center;
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   position: relative;
   overflow: hidden;
@@ -702,6 +709,7 @@ section {
   border-radius: 20px;
   text-align: center;
   transition: all 0.4s ease;
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   position: relative;
   overflow: hidden;
@@ -786,6 +794,7 @@ section {
   border-top: 1px solid var(--border);
   padding: 3rem 2rem;
   background: rgba(6, 9, 26, 0.9);
+  -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
 }
 .footer-inner {
@@ -808,6 +817,7 @@ section {
   inset: 0;
   z-index: 9999;
   background: rgba(6, 9, 26, 0.85);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   display: none;
   align-items: center;
@@ -900,6 +910,7 @@ section {
     border-bottom: 1px solid var(--border);
     padding: 1.5rem 1rem;
     gap: 1rem;
+    -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
     box-sizing: border-box;
   }
@@ -908,21 +919,17 @@ section {
   .nav-dropdown-menu {
     position: static;
     transform: none;
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
     background: transparent;
     border: none;
     border-left: 2px solid var(--border-bright);
     border-radius: 0;
     box-shadow: none;
+    -webkit-backdrop-filter: none;
     backdrop-filter: none;
     padding: 0;
     margin-top: 0.5rem;
     margin-left: 0.5rem;
-    max-height: 0;
-    overflow: hidden;
-    opacity: 0;
+    /* max-height/opacity уже заданы в базовых стилях, переопределяем только то что нужно */
     transition: max-height 0.3s ease, opacity 0.2s ease;
   }
   .nav-dropdown.open .nav-dropdown-menu {
@@ -1011,6 +1018,7 @@ section {
 .feature-item.active {
   background: var(--bg-card);
   border-color: var(--border-bright);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
 }
 .feature-item-top {
@@ -1151,6 +1159,7 @@ section {
   padding: 1.75rem;
   min-height: 180px;
   background: var(--bg-card);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   display: flex;
   flex-direction: column;
@@ -1274,6 +1283,7 @@ section {
   border: 1px solid var(--border);
   border-radius: 14px;
   background: var(--bg-card);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   text-decoration: none;
   transition: all 0.3s ease;
@@ -1329,6 +1339,7 @@ section {
   border: 1px solid var(--border-bright);
   border-radius: 20px;
   padding: 2.5rem 2rem;
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   position: relative;
   overflow: hidden;
@@ -1399,6 +1410,7 @@ section {
 .service-card-inner {
   position: relative;
   width: 100%; height: 100%;
+  -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
   transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 14px;
@@ -1468,6 +1480,7 @@ section {
   transform: rotateY(180deg);
   background: rgba(10, 17, 46, 0.97);
   border: 1px solid var(--border-bright);
+  -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
   display: flex; flex-direction: column;
   justify-content: center;

@@ -142,3 +142,22 @@ vercel dev
 1. Добавить объект в массив `pages` в `scripts/generate-sitemap.js`
 2. Запустить `node scripts/generate-sitemap.js` — перезапишет `sitemap.xml`
 3. Закоммитить оба файла
+
+## Кроссбраузерность
+
+Сайт должен работать в Chrome, Firefox, Safari (macOS + iOS) и Edge.
+
+**Обязательные правила при написании CSS:**
+
+- `backdrop-filter` — всегда писать пару: сначала `-webkit-backdrop-filter`, затем `backdrop-filter`
+- `transform-style: preserve-3d` — писать с префиксом: `-webkit-transform-style` + `transform-style`
+- `backface-visibility` — писать с префиксом: `-webkit-backface-visibility` + `backface-visibility`
+- Скрытие элементов с анимацией — **не использовать** `visibility: hidden` в связке с `transform` и `opacity` (Safari баг). Использовать `max-height: 0 + overflow: hidden + opacity: 0` вместо `visibility`
+- `gap` в flex — поддерживается с Safari 14.1+; для критичных мест добавить `row-gap`/`column-gap` как fallback
+- Цвета — использовать `rgba()`, не `oklch()` и не `color-mix()` (нет поддержки в старых Safari)
+- Не анимировать `display` — использовать `opacity`, `max-height`, `clip-path` или JS-классы
+
+**Чеклист перед коммитом CSS-изменений:**
+- [ ] Добавлен `-webkit-` префикс для `backdrop-filter`, `transform-style`, `backface-visibility`
+- [ ] Скрытые/показываемые элементы не используют `visibility` + `transform` в Safari-несовместимом виде
+- [ ] Анимации протестированы или логически проверены для Safari (особенно flex, position: absolute, transitions)
