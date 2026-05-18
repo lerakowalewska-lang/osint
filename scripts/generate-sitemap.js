@@ -16,6 +16,18 @@ const pages = [
     priority: '1.0',
     lastmod: '2026-04-29',
   },
+  {
+    url: 'https://huntedlead.ru/industry-it',
+    changefreq: 'monthly',
+    priority: '0.9',
+    lastmod: '2026-05-18',
+  },
+  {
+    url: 'https://huntedlead.ru/industry-distributors',
+    changefreq: 'monthly',
+    priority: '0.9',
+    lastmod: '2026-05-18',
+  },
   // Пример добавления новой страницы:
   // {
   //   url: 'https://huntedlead.ru/about/',
