@@ -28,6 +28,12 @@ const pages = [
     priority: '0.9',
     lastmod: '2026-05-18',
   },
+  {
+    url: 'https://huntedlead.ru/industry-manufacturing',
+    changefreq: 'monthly',
+    priority: '0.9',
+    lastmod: '2026-05-18',
+  },
   // Пример добавления новой страницы:
   // {
   //   url: 'https://huntedlead.ru/about/',
