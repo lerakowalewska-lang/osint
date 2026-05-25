@@ -232,6 +232,7 @@ section {
 }
 
 .hero {
+  position: relative;
   text-align: center;
   min-height: 100vh;
   display: flex;

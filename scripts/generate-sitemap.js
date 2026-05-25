@@ -34,6 +34,24 @@ const pages = [
     priority: '0.9',
     lastmod: '2026-05-18',
   },
+  {
+    url: 'https://huntedlead.ru/industry-consulting',
+    changefreq: 'monthly',
+    priority: '0.9',
+    lastmod: '2026-05-25',
+  },
+  {
+    url: 'https://huntedlead.ru/industry-hrtech',
+    changefreq: 'monthly',
+    priority: '0.9',
+    lastmod: '2026-05-25',
+  },
+  {
+    url: 'https://huntedlead.ru/industry-logistics',
+    changefreq: 'monthly',
+    priority: '0.9',
+    lastmod: '2026-05-25',
+  },
   // Пример добавления новой страницы:
   // {
   //   url: 'https://huntedlead.ru/about/',

@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Лидогенерация для логистики, ВЭД и таможни | HuntedLead</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/main.css">
+<script src="nav.js" defer></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"Вы работаете с международными перевозчиками или только с российскими?","acceptedAnswer":{"@type":"Answer","text":"С любыми. Главное, что у вас есть понятный ICP и конкурентное предложение. Если занимаетесь трансграничными отправками, мультимодалом или таможенным сопровождением, мы найдём нужных людей."}},
+    {"@type":"Question","name":"Как вы находите тех, кто принимает решение о выборе перевозчика?","acceptedAnswer":{"@type":"Answer","text":"Через открытые источники: структуру компаний, профили сотрудников, отраслевые реестры. В крупных компаниях это директор по логистике или SCM-директор, в средних — операционный директор или собственник."}},
+    {"@type":"Question","name":"После 2022 года рынок сильно изменился — вы это учитываете?","acceptedAnswer":{"@type":"Answer","text":"Да. Поэтому OSINT сейчас работает лучше, чем покупные базы — актуальные контакты обновляются быстро, а старые данные устарели. Мы ищем тех, кто активен прямо сейчас."}},
+    {"@type":"Question","name":"Сколько компаний вы найдёте?","acceptedAnswer":{"@type":"Answer","text":"Зависит от ниши. В среднем 100 контактов за 1–2 недели. Для специфических маршрутов или узких ВЭД-профилей — меньше, но точнее. Называем реальную цифру до старта."}},
+    {"@type":"Question","name":"Можно ли работать по NDA?","acceptedAnswer":{"@type":"Answer","text":"Да, так и работаем. Подписываем до начала работы. Ни ваше предложение, ни детали проекта не раскрываем без вашего согласия."}}
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"Главная","item":"https://huntedlead.ru"},
+    {"@type":"ListItem","position":2,"name":"Лидогенерация для логистики и ВЭД","item":"https://huntedlead.ru/industry-logistics"}
+  ]
+}
+</script>
+
+<meta name="yandex-verification" content="6d3543e8a81e042b" />
+
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+<meta name="description" content="Находим директоров по логистике, руководителей ВЭД и начальников отдела закупок через OSINT. Верифицированные контакты для транспортных компаний, экспедиторов и таможенных брокеров.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://huntedlead.ru/industry-logistics">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://huntedlead.ru/industry-logistics">
+<meta property="og:title" content="Лидогенерация для логистики, ВЭД и таможни | HuntedLead">
+<meta property="og:description" content="Находим директоров по логистике и руководителей ВЭД для транспортных компаний и экспедиторов. Верифицированные контакты через OSINT.">
+<meta property="og:site_name" content="HuntedLead">
+<meta property="og:locale" content="ru_RU">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Лидогенерация для логистики и ВЭД | HuntedLead">
+<meta name="twitter:description" content="Находим директоров по логистике и руководителей ВЭД для перевозчиков и экспедиторов. OSINT-разведка.">
+
+<script type="text/javascript">
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();
+   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+   ym(108561966, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true });
+</script>
+</head>
+<body>
+
+<noscript><div><img src="https://mc.yandex.ru/watch/108561966" style="position:absolute; left:-9999px;" alt=""/></div></noscript>
+
+<canvas id="bg-canvas"></canvas>
+
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="/" class="logo">
+      <div class="logo-icon"></div>
+      HuntedLead
+    </a>
+    <nav>
+      <ul class="nav-links" id="navLinks"></ul>
+    </nav>
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Меню">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="content-wrapper">
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-badge">
+      <span class="dot"></span>
+      ЛОГИСТИКА &amp; ВЭД
+    </div>
+    <h1>Лидогенерация для&nbsp;логистики и&nbsp;ВЭД: находим компании, которые <span class="highlight">ищут нового перевозчика</span></h1>
+    <p class="hero-sub">Директор по&nbsp;логистике, руководитель ВЭД, начальник отдела закупок — те, кто выбирает перевозчика. Находим их&nbsp;через OSINT, пока конкуренты ждут тендеров.</p>
+    <div class="hero-cta-group">
+      <a href="#contact" class="btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        Получить лидов
+      </a>
+      <a href="#how" class="btn-secondary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+        Как это работает
+      </a>
+    </div>
+    <div class="scroll-indicator">
+      <span>scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- PAIN -->
+  <section class="pain-section" id="pain">
+    <div class="pain-content">
+      <div class="section-tag">Знакомо?</div>
+      <h2 class="section-title">Продаёте логистику или ВЭД&#8209;услуги, но...</h2>
+    </div>
+    <div class="pain-grid">
+      <div class="pain-item" data-delay="0">
+        <div class="pain-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <p><strong>После 2022 года компании массово ищут новых перевозчиков.</strong> Выйти на&nbsp;нужных людей напрямую по-прежнему сложно.</p>
+      </div>
+      <div class="pain-item" data-delay="100">
+        <div class="pain-icon">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <p><strong>Директора по&nbsp;логистике не&nbsp;ищут услуги в&nbsp;Яндексе.</strong> Звонки на&nbsp;ресепшн уходят в&nbsp;никуда.</p>
+      </div>
+      <div class="pain-item" data-delay="200">
+        <div class="pain-icon">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p><strong>В&nbsp;тендер попасть невозможно,</strong> если о&nbsp;вас не&nbsp;знают до&nbsp;его объявления.</p>
+      </div>
+      <div class="pain-item" data-delay="300">
+        <div class="pain-icon">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <p><strong>Холодные письма не&nbsp;работают,</strong> все адреса на&nbsp;сайте ведут к&nbsp;секретарю. До&nbsp;ЛПР по&nbsp;таким адресам не&nbsp;добраться.</p>
+      </div>
+      <div class="pain-item" data-delay="400">
+        <div class="pain-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <p><strong>BizDev тратит время на&nbsp;прозвон по&nbsp;базам,</strong> которые куплены три года назад и&nbsp;наполовину устарели.</p>
+      </div>
+    </div>
+    <a href="#osint" class="scroll-arrow">
+      <span>Читайте дальше</span>
+      <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </a>
+  </section>
+
+  <!-- OSINT FEATURES -->
+  <section class="features-section" id="osint">
+    <div class="features-inner">
+      <div class="features-header">
+        <div class="section-tag">Метод</div>
+        <h2 class="section-title">OSINT&#8209;лидогенерация — решение для&nbsp;логистики</h2>
+      </div>
+      <div class="features-grid">
+        <div class="features-list">
+
+          <div class="feature-item active" data-delay="0">
+            <div class="feature-item-top">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+              </div>
+              <div class="feature-body">
+                <h3>OSINT — разведка по&nbsp;открытым источникам</h3>
+                <p>LinkedIn, сайты компаний, реестры ВЭД&#8209;участников, базы грузоотправителей, таможенная статистика — всё это открытые данные, которые мы умеем читать. Логистика оставляет следы — мы умеем их&nbsp;находить.</p>
+              </div>
+            </div>
+            <div class="feature-progress-wrap"><div class="feature-progress-bar"></div></div>
+          </div>
+
+          <div class="feature-item" data-delay="80">
+            <div class="feature-item-top">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </div>
+              <div class="feature-body">
+                <h3>Логистические потоки оставляют следы</h3>
+                <p>Кто ввозит, какие маршруты используют, кто ищет новых перевозчиков прямо сейчас — это видно в&nbsp;открытых данных. Мы умеем работать с&nbsp;таможенной статистикой и&nbsp;реестрами ВЭД&#8209;участников.</p>
+              </div>
+            </div>
+            <div class="feature-progress-wrap"><div class="feature-progress-bar"></div></div>
+          </div>
+
+          <div class="feature-item" data-delay="160">
+            <div class="feature-item-top">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              </div>
+              <div class="feature-body">
+                <h3>Почему OSINT точнее стандартной лидогенерации</h3>
+                <p>Стандартная лидогенерация — базы и&nbsp;обзвон. OSINT — точечный поиск тех, кому ваши маршруты нужны здесь и&nbsp;сейчас, до&nbsp;тендера. Меньше объём — выше попадание в&nbsp;цель.</p>
+              </div>
+            </div>
+            <div class="feature-progress-wrap"><div class="feature-progress-bar"></div></div>
+          </div>
+
+        </div>
+        <div class="features-visual">
+          <div class="features-image-wrap">
+            <img src="images/разведка.png" alt="OSINT разведка открытых источников для логистики" class="active">
+            <img src="images/проверка.png" alt="Логистические потоки в открытых данных">
+            <img src="images/цель.png" alt="Точечный поиск директоров по логистике и ВЭД">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how-section" id="how">
+    <div class="how-split">
+      <div class="how-left">
+        <div class="section-tag">Процесс</div>
+        <h2 class="section-title">Как это работает в&nbsp;реальности?</h2>
+        <p class="how-example">Например, вы предоставляете ВЭД&#8209;сопровождение из&nbsp;Китая. Нужны компании с&nbsp;импортным потоком от&nbsp;5&nbsp;контейнеров в&nbsp;месяц. Вот что происходит:</p>
+      </div>
+      <div class="how-right">
+        <div class="how-step" data-delay="0">
+          <div class="how-step-icon">
+            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="40" r="30" stroke="rgba(59,125,255,0.2)" stroke-width="1"/>
+              <circle cx="40" cy="40" r="20" stroke="rgba(59,125,255,0.35)" stroke-width="1"/>
+              <circle cx="40" cy="40" r="9" stroke="#3b7dff" stroke-width="1.5"/>
+              <line x1="40" y1="5" x2="40" y2="18" stroke="rgba(59,125,255,0.5)" stroke-width="1"/>
+              <line x1="40" y1="62" x2="40" y2="75" stroke="rgba(59,125,255,0.5)" stroke-width="1"/>
+              <line x1="5"  y1="40" x2="18" y2="40" stroke="rgba(59,125,255,0.5)" stroke-width="1"/>
+              <line x1="62" y1="40" x2="75" y2="40" stroke="rgba(59,125,255,0.5)" stroke-width="1"/>
+              <circle cx="40" cy="40" r="2.5" fill="#3b7dff"/>
+            </svg>
+          </div>
+          <div class="how-step-body">
+            <span class="how-step-num">01</span>
+            <h3>Вы задаёте цель</h3>
+            <p>Описываете профиль клиента — направления, объёмы, размер компании, кто принимает решение о&nbsp;смене перевозчика.</p>
+          </div>
+        </div>
+        <div class="how-step" data-delay="120">
+          <div class="how-step-icon">
+            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="40" cy="40" rx="30" ry="16" stroke="rgba(59,125,255,0.2)" stroke-width="1"/>
+              <ellipse cx="40" cy="40" rx="30" ry="16" stroke="rgba(59,125,255,0.12)" stroke-width="1" transform="rotate(60 40 40)"/>
+              <ellipse cx="40" cy="40" rx="30" ry="16" stroke="rgba(59,125,255,0.12)" stroke-width="1" transform="rotate(120 40 40)"/>
+              <circle cx="40" cy="40" r="30" stroke="rgba(59,125,255,0.25)" stroke-width="1"/>
+              <circle cx="54" cy="27" r="3.5" fill="#3b7dff" opacity="0.9"/>
+              <circle cx="54" cy="27" r="7"   stroke="#3b7dff" stroke-width="0.8" opacity="0.35"/>
+            </svg>
+          </div>
+          <div class="how-step-body">
+            <span class="how-step-num">02</span>
+            <h3>Мы проводим разведку</h3>
+            <p>Находим компании с&nbsp;нужными ВЭД&#8209;потоками и&nbsp;выясняем, кто там руководит логистикой и&nbsp;закупками.</p>
+          </div>
+        </div>
+        <div class="how-step" data-delay="240">
+          <div class="how-step-icon">
+            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="18" r="6"   stroke="#3b7dff" stroke-width="1.5" fill="rgba(59,125,255,0.1)"/>
+              <circle cx="18" cy="56" r="5"   stroke="rgba(59,125,255,0.6)" stroke-width="1" fill="rgba(59,125,255,0.06)"/>
+              <circle cx="62" cy="56" r="5"   stroke="rgba(59,125,255,0.6)" stroke-width="1" fill="rgba(59,125,255,0.06)"/>
+              <circle cx="40" cy="47" r="4"   stroke="rgba(59,125,255,0.45)" stroke-width="1" fill="rgba(59,125,255,0.06)"/>
+              <line x1="40" y1="24" x2="40" y2="43" stroke="rgba(59,125,255,0.4)" stroke-width="1"/>
+              <line x1="40" y1="43" x2="22" y2="52" stroke="rgba(59,125,255,0.3)" stroke-width="1"/>
+              <line x1="40" y1="43" x2="58" y2="52" stroke="rgba(59,125,255,0.3)" stroke-width="1"/>
+              <circle cx="40" cy="18" r="2.5" fill="#3b7dff"/>
+            </svg>
+          </div>
+          <div class="how-step-body">
+            <span class="how-step-num">03</span>
+            <h3>Собираем контакты</h3>
+            <p>Директора по&nbsp;логистике, менеджеры по&nbsp;ВЭД, закупщики. Проверяем каждый контакт вручную — не&nbsp;берём устаревшие данные.</p>
+          </div>
+        </div>
+        <div class="how-step" data-delay="360">
+          <div class="how-step-icon">
+            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="40,10 66,30 66,54 40,70 14,54 14,30" stroke="rgba(59,125,255,0.25)" stroke-width="1"/>
+              <polygon points="40,10 66,30 40,42 14,30" stroke="rgba(59,125,255,0.5)" stroke-width="1" fill="rgba(59,125,255,0.04)"/>
+              <polygon points="40,42 66,30 66,54 40,70" stroke="rgba(59,125,255,0.3)" stroke-width="1" fill="rgba(59,125,255,0.02)"/>
+              <polygon points="40,42 14,30 14,54 40,70" stroke="rgba(59,125,255,0.3)" stroke-width="1" fill="rgba(59,125,255,0.02)"/>
+              <circle cx="40" cy="40" r="2.5" fill="#3b7dff" opacity="0.8"/>
+            </svg>
+          </div>
+          <div class="how-step-body">
+            <span class="how-step-num">04</span>
+            <h3>Передаём список</h3>
+            <p>Контакты ЛПР с&nbsp;именами, должностями и&nbsp;проверенными email или телефонами — готово к&nbsp;первому касанию.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEEPER -->
+  <section class="deeper-section">
+    <div class="deeper-wave" aria-hidden="true">
+      <svg class="deeper-wave-svg" viewBox="0 0 1400 400" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,200 C430,200 430,200 700,200 C970,200 970,200 1400,200" stroke="rgba(59,125,255,0.55)" stroke-width="1.5"/>
+        <path d="M0,188 C430,188 430,200 700,200 C970,200 970,188 1400,188" stroke="rgba(59,125,255,0.45)" stroke-width="1"/>
+        <path d="M0,212 C430,212 430,200 700,200 C970,200 970,212 1400,212" stroke="rgba(59,125,255,0.45)" stroke-width="1"/>
+        <path d="M0,173 C430,173 430,200 700,200 C970,200 970,173 1400,173" stroke="rgba(59,125,255,0.34)" stroke-width="0.9"/>
+        <path d="M0,227 C430,227 430,200 700,200 C970,200 970,227 1400,227" stroke="rgba(59,125,255,0.34)" stroke-width="0.9"/>
+        <path d="M0,155 C430,155 430,200 700,200 C970,200 970,155 1400,155" stroke="rgba(59,125,255,0.24)" stroke-width="0.8"/>
+        <path d="M0,245 C430,245 430,200 700,200 C970,200 970,245 1400,245" stroke="rgba(59,125,255,0.24)" stroke-width="0.8"/>
+        <path d="M0,80  C430,80  430,200 700,200 C970,200 970,80  1400,80"  stroke="rgba(59,125,255,0.07)" stroke-width="0.5"/>
+        <path d="M0,320 C430,320 430,200 700,200 C970,200 970,320 1400,320" stroke="rgba(59,125,255,0.07)" stroke-width="0.5"/>
+      </svg>
+    </div>
+    <div class="deeper-inner">
+      <div class="section-tag">Полный цикл</div>
+      <h2 class="deeper-title">Можем подключиться ещё глубже</h2>
+      <p class="deeper-sub">Сами выйдем на&nbsp;связь, напишем персонализированное предложение и&nbsp;назначим встречу. Вы подключаетесь уже к&nbsp;готовому диалогу.</p>
+      <a href="#contact" class="btn-primary">
+        Обсудить формат
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services-section" id="services">
+    <div class="services-inner">
+      <div class="services-header">
+        <div class="section-tag">Услуги</div>
+        <h2 class="section-title">Что мы сделаем за&nbsp;вас?</h2>
+      </div>
+      <div class="services-grid">
+        <div class="service-card" data-delay="0">
+          <div class="service-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <h3>Поиск директоров по&nbsp;логистике и&nbsp;ВЭД</h3>
+          <p>Руководители логистики, начальники отделов ВЭД, закупщики с&nbsp;импортной функцией — через OSINT, без&nbsp;баз и&nbsp;прозвона.</p>
+        </div>
+        <div class="service-card" data-delay="100">
+          <div class="service-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <h3>Сбор email и&nbsp;телефонов</h3>
+          <p>Актуальные контакты, каждый проверен вручную. Не&nbsp;передаём данные, которые вызывают сомнения.</p>
+        </div>
+        <div class="service-card" data-delay="200">
+          <div class="service-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <h3>Фильтрация по&nbsp;ICP</h3>
+          <p>Работаем только с&nbsp;теми компаниями, которые подходят под&nbsp;ваш профиль — маршруты, объёмы, отрасли, тип груза.</p>
+        </div>
+        <div class="service-card" data-delay="300">
+          <div class="service-card-icon">
+            <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </div>
+          <h3>Email&#8209;аутрич под&nbsp;ключ</h3>
+          <p>Персонализированные письма, которые не&nbsp;похожи на&nbsp;массовую рассылку — потому что это не&nbsp;рассылка.</p>
+        </div>
+        <div class="service-card" data-delay="400">
+          <div class="service-card-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <h3>Appointment Setting</h3>
+          <p>Выходим на&nbsp;связь сами, договариваемся о&nbsp;встрече — вы получаете подтверждённый слот в&nbsp;календаре с&nbsp;нужным человеком.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="why-section" id="why">
+    <div class="why-inner">
+      <div class="why-header">
+        <div class="section-tag">Преимущества</div>
+        <h2 class="section-title">Вместо 1000 холодных лидов — 100 проверенных ЛПР</h2>
+      </div>
+      <div class="why-grid">
+        <div class="why-card why-card-1" data-delay="0">
+          <div class="why-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+          </div>
+          <div class="why-card-body">
+            <h3>Попасть в&nbsp;шорт&#8209;лист до&nbsp;тендера</h3>
+            <p>Логистические решения принимаются за&nbsp;месяцы до&nbsp;тендера. Мы находим нужных людей, пока конкуренты ждут объявления.</p>
+          </div>
+        </div>
+        <div class="why-card why-card-2" data-delay="100">
+          <div class="why-card-icon">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+          </div>
+          <div class="why-card-body">
+            <h3>ВЭД&#8209;ниши — наша специализация</h3>
+            <p>Авиагрузы, мультимодал, таможенное сопровождение — ниши с&nbsp;небольшим рынком, где OSINT работает лучше всего.</p>
+          </div>
+        </div>
+        <div class="why-card why-card-3" data-delay="200">
+          <div class="why-card-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/></svg>
+          </div>
+          <div class="why-card-body">
+            <h3>Без обзвона холодных баз</h3>
+            <p>Каждый контакт найден адресно под&nbsp;ваш запрос — не&nbsp;купленная база с&nbsp;пятью тысячами номеров.</p>
+          </div>
+        </div>
+        <div class="why-card why-card-4" data-delay="300">
+          <div class="why-card-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div class="why-card-body">
+            <h3>100 контактов за&nbsp;1–2 недели</h3>
+            <p>Для узких ВЭД&#8209;ниш объём меньше, но&nbsp;точность выше. Называем реалистичные цифры до&nbsp;начала работы.</p>
+          </div>
+        </div>
+        <div class="why-card why-card-5" data-delay="400">
+          <div class="why-card-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          </div>
+          <div class="why-card-body">
+            <h3>Работаем под&nbsp;NDA</h3>
+            <p>Если детали вашего предложения конфиденциальны — подписываем до&nbsp;старта. Ни&nbsp;ваши маршруты, ни&nbsp;условия не&nbsp;раскрываем без согласия.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section" id="faq">
+    <div class="faq-content">
+      <div class="section-tag">FAQ</div>
+      <h2 class="section-title">Вопросы и&nbsp;ответы</h2>
+      <div class="faq-list">
+        <div class="faq-item open">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span>Вы работаете с&nbsp;международными перевозчиками или только с&nbsp;российскими?</span>
+            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">С&nbsp;любыми. Главное, что у&nbsp;вас есть понятный ICP и&nbsp;конкурентное предложение. Если занимаетесь трансграничными отправками, мультимодалом или таможенным сопровождением — мы найдём нужных людей.</div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span>Как вы находите тех, кто принимает решение о&nbsp;выборе перевозчика?</span>
+            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">Через открытые источники: структуру компаний, профили сотрудников, отраслевые реестры. В&nbsp;крупных компаниях это директор по&nbsp;логистике или SCM&#8209;директор, в&nbsp;средних — операционный директор или собственник.</div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span>После 2022 года рынок сильно изменился — вы это учитываете?</span>
+            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">Да. Поэтому OSINT сейчас работает лучше, чем покупные базы — актуальные контакты обновляются быстро, а&nbsp;старые данные устарели. Мы ищем тех, кто активен прямо сейчас.</div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span>Сколько компаний вы найдёте?</span>
+            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">Зависит от&nbsp;ниши. В&nbsp;среднем 100 контактов за&nbsp;1–2 недели. Для специфических маршрутов или узких ВЭД&#8209;профилей — меньше, но&nbsp;точнее. Называем реальную цифру до&nbsp;старта.</div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span>Можно ли работать по&nbsp;NDA?</span>
+            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner">Да, так и&nbsp;работаем. Подписываем до&nbsp;начала работы. Ни&nbsp;ваше предложение, ни&nbsp;детали проекта не&nbsp;раскрываем без вашего согласия.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing-section" id="pricing">
+    <div class="pricing-content">
+      <div class="section-tag">Тарифы</div>
+      <h2 class="section-title">Формат работы</h2>
+      <div class="pricing-grid">
+        <div class="price-card" data-delay="0">
+          <div class="price-label">Разогрев</div>
+          <div class="price-amount">65 000 ₽</div>
+          <p class="price-desc">Чтобы понять, как это работает и&nbsp;убедиться, что мы не&nbsp;врём</p>
+          <a href="#contact" class="btn-secondary">Начать</a>
+        </div>
+        <div class="price-card featured" data-delay="150">
+          <div class="price-label">Охота всерьёз</div>
+          <div class="price-amount">150 000 ₽</div>
+          <p class="price-desc">Системная работа + стабильный поток диалогов. Тут начинается настоящий рост&nbsp;продаж</p>
+          <a href="#contact" class="btn-primary">Выбрать</a>
+        </div>
+        <div class="price-card" data-delay="300">
+          <div class="price-label">Безлимитный сезон</div>
+          <div class="price-amount">По запросу</div>
+          <p class="price-desc">Пока сделки закрываются — мы продолжаем приводить новых лидов</p>
+          <a href="#contact" class="btn-secondary">Обсудить</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FORM -->
+  <section class="cta-section" id="contact">
+    <div class="cta-content">
+      <div class="section-tag">Заявка</div>
+      <h2 class="section-title">Сколько ЛПР найдём для&nbsp;вас?</h2>
+      <p class="cta-subtitle">Расскажите, кого ищете. Мы посмотрим, сколько контактов сможем найти и&nbsp;за&nbsp;какое время.</p>
+      <div id="formContainer">
+        <div class="cta-form" id="leadForm">
+          <div class="form-group">
+            <input type="text" id="userName" placeholder="Ваше имя" required autocomplete="name">
+          </div>
+          <div class="form-group">
+            <input type="tel" id="userPhone" placeholder="+7 (___) ___-__-__" required autocomplete="tel">
+          </div>
+          <div class="form-submit">
+            <button class="btn-primary" onclick="submitForm()" id="submitBtn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              Оставить заявку
+            </button>
+          </div>
+          <div class="form-error" id="formError">Не удалось отправить заявку. Попробуйте ещё раз или свяжитесь с нами напрямую.</div>
+          <p class="form-note">Нажимая кнопку, вы соглашаетесь с&nbsp;<a href="#" onclick="openPrivacy(event)">политикой конфиденциальности</a></p>
+        </div>
+        <div class="form-success" id="formSuccess">
+          <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <h3>Заявка отправлена!</h3>
+          <p>Мы свяжемся с вами в ближайшее время</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-left">
+      <a href="/" class="logo">
+        <div class="logo-icon"></div>
+        HuntedLead
+      </a>
+      <p class="footer-copy">&copy; 2026 HuntedLead. Все права защищены.</p>
+    </div>
+    <ul class="footer-links">
+      <li><a href="/">Главная</a></li>
+      <li><a href="#how">Как работаем</a></li>
+      <li><a href="#pricing">Тарифы</a></li>
+      <li><a href="#contact">Контакты</a></li>
+      <li><a href="#" onclick="openPrivacy(event)">Конфиденциальность</a></li>
+    </ul>
+  </div>
+</footer>
+
+<div class="modal-overlay" id="privacyModal">
+  <div class="modal-box">
+    <h2>Политика конфиденциальности</h2>
+    <p>Настоящая политика конфиденциальности определяет порядок обработки и защиты персональных данных пользователей сайта HuntedLead.</p>
+    <h3>1. Сбор данных</h3>
+    <p>Мы собираем только те данные, которые вы предоставляете добровольно через форму заявки на сайте: имя и номер телефона.</p>
+    <h3>2. Цели обработки</h3>
+    <p>Персональные данные используются исключительно для связи с вами по вашему запросу и предоставления информации о наших услугах.</p>
+    <h3>3. Хранение и защита</h3>
+    <p>Мы принимаем необходимые организационные и технические меры для защиты ваших персональных данных от несанкционированного доступа, изменения, раскрытия или уничтожения.</p>
+    <h3>4. Передача третьим лицам</h3>
+    <p>Мы не передаём, не продаём и не раскрываем ваши персональные данные третьим лицам без вашего согласия, за исключением случаев, предусмотренных законодательством.</p>
+    <h3>5. Срок хранения</h3>
+    <p>Персональные данные хранятся в течение срока, необходимого для достижения целей обработки, после чего удаляются.</p>
+    <h3>6. Ваши права</h3>
+    <p>Вы вправе запросить информацию о своих персональных данных, потребовать их изменения или удаления, направив соответствующий запрос на наш контактный email.</p>
+    <h3>7. Файлы cookie</h3>
+    <p>Сайт может использовать файлы cookie для улучшения пользовательского опыта. Вы можете отключить cookie в настройках браузера.</p>
+    <button class="modal-close" onclick="closePrivacy()">Закрыть</button>
+  </div>
+</div>
+
+<script>
+(function() {
+  const canvas = document.getElementById('bg-canvas');
+  const ctx = canvas.getContext('2d');
+  let w, h, particles = [], mouse = { x: -1000, y: -1000 };
+  const PARTICLE_COUNT = 120, CONNECT_DIST = 140;
+  function resize() { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
+  function createParticles() {
+    particles = [];
+    for (let i = 0; i < PARTICLE_COUNT; i++) particles.push({ x: Math.random()*w, y: Math.random()*h, z: Math.random()*0.5+0.5, vx: (Math.random()-0.5)*0.4, vy: (Math.random()-0.5)*0.4, size: Math.random()*2+1 });
+  }
+  function draw() {
+    ctx.clearRect(0,0,w,h);
+    ctx.strokeStyle='rgba(59,125,255,0.04)'; ctx.lineWidth=1;
+    const gs=60;
+    for(let x=0;x<w;x+=gs){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,h);ctx.stroke();}
+    for(let y=0;y<h;y+=gs){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(w,y);ctx.stroke();}
+    for(let i=0;i<particles.length;i++){
+      const p=particles[i]; p.x+=p.vx; p.y+=p.vy;
+      if(p.x<0)p.x=w; if(p.x>w)p.x=0; if(p.y<0)p.y=h; if(p.y>h)p.y=0;
+      const dx=p.x-mouse.x,dy=p.y-mouse.y,dist=Math.sqrt(dx*dx+dy*dy);
+      if(dist<150){p.x+=dx*0.01;p.y+=dy*0.01;}
+      ctx.beginPath();ctx.arc(p.x,p.y,p.size*p.z,0,Math.PI*2);ctx.fillStyle=`rgba(59,125,255,${0.15+p.z*0.4})`;ctx.fill();
+      for(let j=i+1;j<particles.length;j++){
+        const p2=particles[j],ddx=p.x-p2.x,ddy=p.y-p2.y,d=Math.sqrt(ddx*ddx+ddy*ddy);
+        if(d<CONNECT_DIST){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(p2.x,p2.y);ctx.strokeStyle=`rgba(59,125,255,${(1-d/CONNECT_DIST)*0.1})`;ctx.lineWidth=0.5;ctx.stroke();}
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize',()=>{resize();createParticles();});
+  document.addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY;});
+  resize();createParticles();draw();
+})();
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), parseInt(entry.target.dataset.delay || 0));
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+document.querySelectorAll('.pain-item, .how-step, .faq-item, .price-card, .feature-item, .why-card, .service-card').forEach(el => observer.observe(el));
+
+function toggleFaq(el) {
+  const item = el.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+async function submitForm() {
+  const name = document.getElementById('userName').value.trim();
+  const phone = document.getElementById('userPhone').value.trim();
+  const errorEl = document.getElementById('formError');
+  errorEl.classList.remove('active');
+  const phoneOk = phone.replace(/\D/g, '').length === 11;
+  if (!name || !phoneOk) {
+    if (!name) document.getElementById('userName').style.borderColor = '#ef4444';
+    if (!phoneOk) document.getElementById('userPhone').style.borderColor = '#ef4444';
+    setTimeout(() => { document.getElementById('userName').style.borderColor = ''; document.getElementById('userPhone').style.borderColor = ''; }, 2000);
+    return;
+  }
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<span style="animation:pulse 1s infinite">Отправка...</span>';
+  try {
+    const formData = new FormData();
+    formData.append('access_key', 'b19e7dd9-9b38-4009-a408-10fe3764d836');
+    formData.append('name', name); formData.append('phone', phone);
+    formData.append('subject', 'Новая заявка с сайта HuntedLead (Logistics)');
+    formData.append('from_name', 'HuntedLead');
+    const [tgResponse, w3fResponse] = await Promise.all([
+      fetch('/api/send-lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, phone, source: 'industry-logistics' }) }),
+      fetch('https://api.web3forms.com/submit', { method: 'POST', body: formData })
+    ]);
+    const tgData = await tgResponse.json(), w3fData = await w3fResponse.json();
+    if (tgData.success || w3fData.success) { document.getElementById('leadForm').style.display = 'none'; document.getElementById('formSuccess').classList.add('active'); }
+    else throw new Error(tgData.error || w3fData.message || 'Server error');
+  } catch (err) {
+    console.error('Submit error:', err); errorEl.classList.add('active');
+    btn.disabled = false;
+    btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Оставить заявку';
+  }
+}
+
+function openPrivacy(e) { e.preventDefault(); document.getElementById('privacyModal').classList.add('active'); document.body.style.overflow = 'hidden'; }
+function closePrivacy() { document.getElementById('privacyModal').classList.remove('active'); document.body.style.overflow = ''; }
+document.getElementById('privacyModal').addEventListener('click', function(e) { if (e.target === this) closePrivacy(); });
+
+document.querySelectorAll('.why-card, .price-card, .service-card').forEach(card => {
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+    card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+  });
+});
+
+(function() {
+  const items = document.querySelectorAll('.feature-item');
+  const images = document.querySelectorAll('.features-image-wrap img');
+  if (!items.length) return;
+  const DURATION = 10000, TICK = 100;
+  let currentIdx = 0, elapsed = 0, timer;
+  function activate(idx) {
+    items.forEach((el, i) => { el.classList.toggle('active', i === idx); const bar = el.querySelector('.feature-progress-bar'); if (bar) bar.style.width = '0%'; });
+    images.forEach((img, i) => img.classList.toggle('active', i === idx));
+    currentIdx = idx; elapsed = 0;
+  }
+  function tick() {
+    elapsed += TICK;
+    const bar = items[currentIdx] && items[currentIdx].querySelector('.feature-progress-bar');
+    if (bar) bar.style.width = Math.min(elapsed / DURATION * 100, 100) + '%';
+    if (elapsed >= DURATION) activate((currentIdx + 1) % items.length);
+  }
+  function startTimer() { clearInterval(timer); timer = setInterval(tick, TICK); }
+  items.forEach((el, i) => el.addEventListener('click', () => { activate(i); startTimer(); }));
+  activate(0); startTimer();
+})();
+
+function phoneMask(input) {
+  let v = input.value.replace(/\D/g, '');
+  if (!v) { input.value = ''; return; }
+  if (v[0] === '8') v = '7' + v.slice(1); else if (v[0] !== '7') v = '7' + v;
+  v = v.slice(0, 11);
+  let r = '+' + v[0];
+  if (v.length > 1) r += ' (' + v.slice(1, 4);
+  if (v.length >= 4) r += ')';
+  if (v.length > 4) r += ' ' + v.slice(4, 7);
+  if (v.length > 7) r += '-' + v.slice(7, 9);
+  if (v.length > 9) r += '-' + v.slice(9, 11);
+  input.value = r;
+}
+function setupPhoneMask(input) {
+  input.addEventListener('keydown', e => {
+    if ([9,13,27,37,38,39,40].includes(e.keyCode)) return;
+    if ((e.ctrlKey||e.metaKey)&&[65,67,86,88].includes(e.keyCode)) return;
+    if (e.key==='Backspace'||e.key==='Delete') { e.preventDefault(); const d=input.value.replace(/\D/g,''); if(d.length<=1){input.value='';return;} input.value=d.slice(0,-1); phoneMask(input); return; }
+    if (/^\d$/.test(e.key)) { e.preventDefault(); const d=input.value.replace(/\D/g,''); if(d.length>=11)return; input.value=d+e.key; phoneMask(input); return; }
+    e.preventDefault();
+  });
+  input.addEventListener('paste', e => { e.preventDefault(); input.value=(e.clipboardData||window.clipboardData).getData('text'); phoneMask(input); });
+  input.addEventListener('focus', () => { if (!input.value) input.value = '+7 ('; });
+  input.addEventListener('blur', () => { if (input.value.replace(/\D/g,'').length<=1) input.value=''; });
+}
+setupPhoneMask(document.getElementById('userPhone'));
+</script>
+
+</body>
+</html>
