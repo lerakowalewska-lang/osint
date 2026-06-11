@@ -52,6 +52,12 @@ const pages = [
     priority: '0.9',
     lastmod: '2026-05-25',
   },
+  {
+    url: 'https://huntedlead.ru/outreach',
+    changefreq: 'monthly',
+    priority: '0.9',
+    lastmod: '2026-06-11',
+  },
   // Пример добавления новой страницы:
   // {
   //   url: 'https://huntedlead.ru/about/',

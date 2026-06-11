@@ -16,6 +16,7 @@
   const items = [
     { href: '#how', text: 'Как работаем' },
     ...(hasServices ? [{ href: '#services', text: 'Услуги' }] : []),
+    { href: '/outreach', text: 'Аутрич' },
     {
       type: 'dropdown',
       text: 'Ниши',
