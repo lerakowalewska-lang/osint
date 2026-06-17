@@ -1,4 +1,12 @@
 <?php
+register_shutdown_function(function () {
+    $e = error_get_last();
+    if ($e && in_array($e['type'], [E_ERROR, E_PARSE, E_CORE_ERROR, E_COMPILE_ERROR])) {
+        if (!headers_sent()) header('Content-Type: application/json');
+        http_response_code(500);
+        echo json_encode(['success' => false, 'error' => $e['message'] . ' in ' . basename($e['file']) . ':' . $e['line']]);
+    }
+});
 header('Content-Type: application/json');
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
