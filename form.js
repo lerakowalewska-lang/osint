@@ -137,7 +137,7 @@
     var tgBody = JSON.stringify({ name: nameEl.value.trim(), phone: phoneEl.value.trim(), source: source });
 
     Promise.all([
-      fetch('/api/send-lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: tgBody })
+      fetch('/api/send-lead.php', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: tgBody })
         .then(function (r) { return r.json(); }).catch(function () { return {}; }),
       fetch('https://api.web3forms.com/submit', { method: 'POST', body: fd })
         .then(function (r) { return r.json(); }).catch(function () { return {}; })
