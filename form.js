@@ -1,0 +1,115 @@
+﻿(function () {
+  function getSource() {
+    var path = window.location.pathname.replace(/^\//, "").replace(/\.html$/, "");
+    return path || "website";
+  }
+
+  function phoneMask(input) {
+    var v = input.value.replace(/\D/g, "");
+    if (!v) { input.value = ""; return; }
+    if (v[0] === "8") v = "7" + v.slice(1); else if (v[0] !== "7") v = "7" + v;
+    v = v.slice(0, 11);
+    var r = "+" + v[0];
+    if (v.length > 1) r += " (" + v.slice(1, 4);
+    if (v.length >= 4) r += ")";
+    if (v.length > 4) r += " " + v.slice(4, 7);
+    if (v.length > 7) r += "-" + v.slice(7, 9);
+    if (v.length > 9) r += "-" + v.slice(9, 11);
+    input.value = r;
+  }
+
+  function setupPhoneMask(input) {
+    if (!input) return;
+    input.addEventListener("keydown", function(e) {
+      if ([9,13,27,37,38,39,40].indexOf(e.keyCode) !== -1) return;
+      if ((e.ctrlKey||e.metaKey) && [65,67,86,88].indexOf(e.keyCode) !== -1) return;
+      if (e.key === "Backspace" || e.key === "Delete") {
+        e.preventDefault();
+        var d = input.value.replace(/\D/g,"");
+        if (d.length <= 1) { input.value = ""; return; }
+        input.value = d.slice(0,-1); phoneMask(input); return;
+      }
+      if (/^\d$/.test(e.key)) {
+        e.preventDefault();
+        var d = input.value.replace(/\D/g,"");
+        if (d.length >= 11) return;
+        input.value = d + e.key; phoneMask(input); return;
+      }
+      e.preventDefault();
+    });
+    input.addEventListener("paste", function(e) {
+      e.preventDefault();
+      input.value = (e.clipboardData||window.clipboardData).getData("text");
+      phoneMask(input);
+    });
+    input.addEventListener("focus", function() { if (!input.value) input.value = "+7 ("; });
+    input.addEventListener("blur", function() { if (input.value.replace(/\D/g,"").length<=1) input.value=""; });
+  }
+
+  var SI = "<svg width=\\"18\\" height=\\"18\\" viewBox=\\"0 0 24 24\\" fill=\\"none\\" stroke=\\"currentColor\\" stroke-width=\\"1.5\\" stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\"><line x1=\\"22\\" y1=\\"2\\" x2=\\"11\\" y2=\\"13\\"/><polygon points=\\"22 2 15 22 11 13 2 9 22 2\\"/></svg>";
+
+  function doSubmit(ids) {
+    var nameEl = document.getElementById(ids.name);
+    var phoneEl = document.getElementById(ids.phone);
+    var errorEl = document.getElementById(ids.error);
+    var btn = document.getElementById(ids.btn);
+    if (!nameEl||!phoneEl||!btn) return;
+    if (errorEl) errorEl.classList.remove("active");
+    var name = nameEl.value.trim();
+    var phone = phoneEl.value.trim();
+    var phoneOk = phone.replace(/\D/g,"").length === 11;
+    if (!name||!phoneOk) {
+      if (!name) nameEl.style.borderColor = "#ef4444";
+      if (!phoneOk) phoneEl.style.borderColor = "#ef4444";
+      setTimeout(function() { nameEl.style.borderColor=""; phoneEl.style.borderColor=""; }, 2000);
+      return;
+    }
+    btn.disabled = true;
+    btn.innerHTML = "<span style=\"animation:pulse 1s infinite\">Отправка...</span>";
+    var source = getSource();
+    var fd = new FormData();
+    fd.append("access_key","b19e7dd9-9b38-4009-a408-10fe3764d836");
+    fd.append("name",name); fd.append("phone",phone);
+    fd.append("subject","Новая заявка с сайта HuntedLead ("+source+")");
+    fd.append("from_name","HuntedLead");
+    var tgB = JSON.stringify({name:name,phone:phone,source:source});
+    var tgOpts = {method:"POST",headers:{"Content-Type":"application/json"},body:tgB};
+    var w3Opts = {method:"POST",body:fd};
+    Promise.all([
+      fetch("/api/send-lead",tgOpts).then(function(r){return r.json();}).catch(function(){return {};})
+     ,fetch("https://api.web3forms.com/submit",w3Opts).then(function(r){return r.json();}).catch(function(){return {};})
+    ]).then(function(res){
+      var tg=res[0], w3=res[1];
+      if(tg.success||w3.success){
+        var f=document.getElementById(ids.form); if(f) f.style.display="none";
+        var s=document.getElementById(ids.success); if(s) s.classList.add("active");
+      } else { throw new Error(tg.error||w3.message||"Server error"); }
+    }).catch(function(err){
+      console.error("Submit error:",err);
+      if(errorEl) errorEl.classList.add("active");
+      btn.disabled=false; btn.innerHTML=SI+" Оставить заявку";
+    });
+  }
+
+  window.submitForm = function() {
+    doSubmit({name:"userName",phone:"userPhone",form:"leadForm",success:"formSuccess",error:"formError",btn:"submitBtn"});
+  };
+  window.submitContactsForm = function() {
+    doSubmit({name:"contactsName",phone:"contactsPhone",form:"contactsLeadForm",success:"contactsFormSuccess",error:"contactsFormError",btn:"contactsSubmitBtn"});
+  };
+  window.openPrivacy = function(e) {
+    e.preventDefault();
+    var m=document.getElementById("privacyModal");
+    if(m){m.classList.add("active");document.body.style.overflow="hidden";}
+  };
+  window.closePrivacy = function() {
+    var m=document.getElementById("privacyModal");
+    if(m){m.classList.remove("active");document.body.style.overflow="";}
+  };
+  document.addEventListener("DOMContentLoaded",function(){
+    setupPhoneMask(document.getElementById("userPhone"));
+    setupPhoneMask(document.getElementById("contactsPhone"));
+    var m=document.getElementById("privacyModal");
+    if(m) m.addEventListener("click",function(e){if(e.target===this)window.closePrivacy();});
+  });
+})();

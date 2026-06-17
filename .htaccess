@@ -9,6 +9,9 @@ RewriteRule ^ https://huntedlead.ru%{REQUEST_URI} [R=301,L]
 RewriteCond %{HTTPS} off
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
+# Route /api/send-lead to PHP handler
+RewriteRule ^api/send-lead$ /api/send-lead.php [L]
+
 # Serve .html files without extension
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME}.html -f
