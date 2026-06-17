@@ -46,26 +46,50 @@
     input.addEventListener("blur", function() { if (input.value.replace(/\D/g,"").length<=1) input.value=""; });
   }
 
-  var SI = "<svg width=\\"18\\" height=\\"18\\" viewBox=\\"0 0 24 24\\" fill=\\"none\\" stroke=\\"currentColor\\" stroke-width=\\"1.5\\" stroke-linecap=\\"round\\" stroke-linejoin=\\"round\\"><line x1=\\"22\\" y1=\\"2\\" x2=\\"11\\" y2=\\"13\\"/><polygon points=\\"22 2 15 22 11 13 2 9 22 2\\"/></svg>";
+  var SI = "<svg width=""18"" height=""18"" viewBox=""0 0 24 24"" fill=""none"" stroke=""currentColor"" stroke-width=""1.5"" stroke-linecap=""round"" stroke-linejoin=""round""><line x1=""22"" y1=""2"" x2=""11"" y2=""13""/><polygon points=""22 2 15 22 11 13 2 9 22 2""/></svg>";
+  var SUBMIT_ERR_MSG = "Не удалось отправить заявку. Попробуйте ещё раз или свяжитесь с нами напрямую.";
+
+  function markError(el) {
+    el.style.borderColor = "#ef4444";
+    el.style.boxShadow = "0 0 0 3px rgba(239,68,68,0.25)";
+  }
+  function clearError(el) {
+    el.style.borderColor = "";
+    el.style.boxShadow = "";
+  }
 
   function doSubmit(ids) {
-    var nameEl = document.getElementById(ids.name);
+    var nameEl  = document.getElementById(ids.name);
     var phoneEl = document.getElementById(ids.phone);
     var errorEl = document.getElementById(ids.error);
-    var btn = document.getElementById(ids.btn);
+    var btn     = document.getElementById(ids.btn);
     if (!nameEl||!phoneEl||!btn) return;
     if (errorEl) errorEl.classList.remove("active");
-    var name = nameEl.value.trim();
-    var phone = phoneEl.value.trim();
+
+    var name    = nameEl.value.trim();
+    var phone   = phoneEl.value.trim();
+    var nameOk  = name.length > 0;
     var phoneOk = phone.replace(/\D/g,"").length === 11;
-    if (!name||!phoneOk) {
-      if (!name) nameEl.style.borderColor = "#ef4444";
-      if (!phoneOk) phoneEl.style.borderColor = "#ef4444";
-      setTimeout(function() { nameEl.style.borderColor=""; phoneEl.style.borderColor=""; }, 2000);
+
+    if (!nameOk || !phoneOk) {
+      if (!nameOk)  markError(nameEl);
+      if (!phoneOk) markError(phoneEl);
+      if (errorEl) {
+        var msgs = [];
+        if (!nameOk)  msgs.push("имя");
+        if (!phoneOk) msgs.push("номер телефона");
+        errorEl.textContent = "Пожалуйста, заполните " + msgs.join(" и ") + ".";
+        errorEl.classList.add("active");
+      }
+      setTimeout(function() {
+        clearError(nameEl); clearError(phoneEl);
+        if (errorEl) errorEl.classList.remove("active");
+      }, 3000);
       return;
     }
+
     btn.disabled = true;
-    btn.innerHTML = "<span style=\"animation:pulse 1s infinite\">Отправка...</span>";
+    btn.innerHTML = "<span style=""animation:pulse 1s infinite"">Отправка...</span>";
     var source = getSource();
     var fd = new FormData();
     fd.append("access_key","b19e7dd9-9b38-4009-a408-10fe3764d836");
@@ -86,7 +110,7 @@
       } else { throw new Error(tg.error||w3.message||"Server error"); }
     }).catch(function(err){
       console.error("Submit error:",err);
-      if(errorEl) errorEl.classList.add("active");
+      if(errorEl) { errorEl.textContent = SUBMIT_ERR_MSG; errorEl.classList.add("active"); }
       btn.disabled=false; btn.innerHTML=SI+" Оставить заявку";
     });
   }
