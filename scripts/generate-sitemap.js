@@ -58,6 +58,42 @@ const pages = [
     priority: '0.9',
     lastmod: '2026-06-11',
   },
+  {
+    url: 'https://huntedlead.ru/blog',
+    changefreq: 'weekly',
+    priority: '0.7',
+    lastmod: '2026-06-24',
+  },
+  {
+    url: 'https://huntedlead.ru/blog-osint-marketing',
+    changefreq: 'monthly',
+    priority: '0.6',
+    lastmod: '2026-06-24',
+  },
+  {
+    url: 'https://huntedlead.ru/blog-osint-ethics',
+    changefreq: 'monthly',
+    priority: '0.6',
+    lastmod: '2026-06-24',
+  },
+  {
+    url: 'https://huntedlead.ru/blog-email-outreach',
+    changefreq: 'monthly',
+    priority: '0.6',
+    lastmod: '2026-06-24',
+  },
+  {
+    url: 'https://huntedlead.ru/blog-lead-search',
+    changefreq: 'monthly',
+    priority: '0.6',
+    lastmod: '2026-06-24',
+  },
+  {
+    url: 'https://huntedlead.ru/blog-research-tools',
+    changefreq: 'monthly',
+    priority: '0.6',
+    lastmod: '2026-06-24',
+  },
   // Пример добавления новой страницы:
   // {
   //   url: 'https://huntedlead.ru/about/',
