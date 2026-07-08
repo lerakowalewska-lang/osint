@@ -899,6 +899,7 @@ section {
   .nav-links.mobile-open {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     position: absolute;
     top: 100%;
     left: 0;
@@ -918,7 +919,7 @@ section {
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
   }
   .nav-dropdown-menu {
     position: static;
