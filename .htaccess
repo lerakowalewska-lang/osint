@@ -17,6 +17,12 @@ RewriteRule ^api/send-lead$ /api/send-lead.php [L]
 # поэтому маршрутизируем явно, в обход directory-index и правила "strip trailing slash".
 RewriteRule ^wp-blog/?$ /wp-blog/index.php [L]
 
+# Служебные пути WordPress в корне домена (нужны, т.к. "Адрес сайта" = корень,
+# поэтому REST API/логин/ассеты WP запрашиваются без префикса /wp-blog).
+RewriteRule ^wp-(admin|content|includes|json)(/.*)?$ /wp-blog/wp-$1$2 [L]
+RewriteRule ^wp-login\.php$ /wp-blog/wp-login.php [L]
+RewriteRule ^xmlrpc\.php$ /wp-blog/xmlrpc.php [L]
+
 # Serve .html files without extension
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME}.html -f
