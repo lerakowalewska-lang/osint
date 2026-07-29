@@ -23,6 +23,9 @@ RewriteRule ^wp-(admin|content|includes|json)(/.*)?$ /wp-blog/wp-$1$2 [L]
 RewriteRule ^wp-login\.php$ /wp-blog/wp-login.php [L]
 RewriteRule ^xmlrpc\.php$ /wp-blog/xmlrpc.php [L]
 
+# Лента блога и статьи — из WordPress (перекрывает старую статику blog.html на время переноса)
+RewriteRule ^blog(/.*)?$ /wp-blog/index.php [L]
+
 # Serve .html files without extension
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME}.html -f
