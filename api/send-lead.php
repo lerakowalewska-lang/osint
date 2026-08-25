@@ -35,7 +35,7 @@ $name   = htmlspecialchars($body['name'],   ENT_QUOTES, 'UTF-8');
 $phone  = htmlspecialchars($body['phone'],  ENT_QUOTES, 'UTF-8');
 $source = htmlspecialchars($body['source'] ?? 'website', ENT_QUOTES, 'UTF-8');
 
-$TG_CHAT_ID = '-5268453636';
+$TG_CHAT_ID = '-5171600887';
 
 $date    = new DateTime('now', new DateTimeZone('Europe/Moscow'));
 $dateStr = $date->format('d.m.Y H:i') . ' МСК';

@@ -127,31 +127,20 @@
     btn.innerHTML = '<span style="animation:pulse 1s infinite">Отправка...</span>';
 
     var source = getSource();
-    var fd = new FormData();
-    fd.append('access_key', 'b19e7dd9-9b38-4009-a408-10fe3764d836');
-    fd.append('name', nameEl.value.trim());
-    fd.append('phone', phoneEl.value.trim());
-    fd.append('subject', 'Новая заявка с сайта HuntedLead (' + source + ')');
-    fd.append('from_name', 'HuntedLead');
-
     var tgBody = JSON.stringify({ name: nameEl.value.trim(), phone: phoneEl.value.trim(), source: source });
 
-    Promise.all([
-      fetch('/api/send-lead.php', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: tgBody })
-        .then(function (r) { return r.json(); }).catch(function () { return {}; }),
-      fetch('https://api.web3forms.com/submit', { method: 'POST', body: fd })
-        .then(function (r) { return r.json(); }).catch(function () { return {}; })
-    ]).then(function (res) {
-      var tg = res[0], w3 = res[1];
-      if (tg.success || w3.success) {
-        var formEl = document.getElementById(ids.form);
-        if (formEl) formEl.style.display = 'none';
-        var successEl = document.getElementById(ids.success);
-        if (successEl) successEl.classList.add('active');
-      } else {
-        throw new Error(tg.error || w3.message || 'Server error');
-      }
-    }).catch(function (err) {
+    fetch('/api/send-lead.php', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: tgBody })
+      .then(function (r) { return r.json(); })
+      .then(function (tg) {
+        if (tg.success) {
+          var formEl = document.getElementById(ids.form);
+          if (formEl) formEl.style.display = 'none';
+          var successEl = document.getElementById(ids.success);
+          if (successEl) successEl.classList.add('active');
+        } else {
+          throw new Error(tg.error || 'Server error');
+        }
+      }).catch(function (err) {
       console.error('Submit error:', err);
       if (errorEl) { errorEl.textContent = SUBMIT_ERR; errorEl.classList.add('active'); }
       btn.disabled = false;
