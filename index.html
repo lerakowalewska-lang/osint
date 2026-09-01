@@ -56,11 +56,16 @@
 <meta property="og:description" content="Находим email, телефоны и LinkedIn руководителей, которые могут сказать «да». Верифицированные контакты — без баз, без парсинга, только OSINT.">
 <meta property="og:site_name" content="HuntedLead">
 <meta property="og:locale" content="ru_RU">
+<meta property="og:image" content="https://huntedlead.ru/images/og/og-home.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/jpeg">
 
 <!-- Twitter Card -->
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="HuntedLead — OSINT-лидогенерация для B2B">
 <meta name="twitter:description" content="Находим email, телефоны и LinkedIn руководителей, которые могут сказать «да». От 65 000 ₽.">
+<meta name="twitter:image" content="https://huntedlead.ru/images/og/og-home.jpg">
 
 <!-- Яндекс Метрика -->
 <script type="text/javascript">
@@ -87,12 +92,32 @@
 
 <header class="site-header" id="siteHeader">
   <div class="header-inner">
-    <a href="#" class="logo">
+    <a href="/" class="logo">
       <div class="logo-icon"></div>
       HuntedLead
     </a>
     <nav>
-      <ul class="nav-links" id="navLinks"></ul>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#how">Как работаем</a></li>
+        <li><a href="/outreach">Аутрич</a></li>
+        <li class="nav-dropdown">
+          <button class="nav-dropdown-btn" aria-expanded="false" aria-haspopup="true">
+            Ниши
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <ul class="nav-dropdown-menu" role="menu">
+            <li role="none"><a href="/industry-it" role="menuitem">IT и SaaS</a></li>
+            <li role="none"><a href="/industry-manufacturing" role="menuitem">Производствам</a></li>
+            <li role="none"><a href="/industry-distributors" role="menuitem">Дистрибьюторам</a></li>
+            <li role="none"><a href="/industry-consulting" role="menuitem">Консалтинг</a></li>
+            <li role="none"><a href="/industry-hrtech" role="menuitem">HR-tech</a></li>
+            <li role="none"><a href="/industry-logistics" role="menuitem">Логистика и ВЭД</a></li>
+          </ul>
+        </li>
+        <li><a href="#faq">Вопросы</a></li>
+        <li><a href="#pricing">Тарифы</a></li>
+        <li><a href="#contact" class="nav-cta">Оставить заявку</a></li>
+      </ul>
     </nav>
     <button class="mobile-toggle" id="mobileToggle" aria-label="Меню">
       <span></span><span></span><span></span>
@@ -220,9 +245,9 @@
         <!-- Right: image placeholder -->
         <div class="features-visual">
           <div class="features-image-wrap">
-            <img src="images/разведка.png" alt="OSINT разведка по открытым источникам" class="active">
-            <img src="images/проверка.png" alt="Отличие от обычной лидогенерации">
-            <img src="images/цель.png" alt="Точечный поиск ЛПР">
+            <img src="/images/osint-razvedka.webp" alt="OSINT разведка по открытым источникам" class="active" width="1000" height="1000" decoding="async" fetchpriority="high">
+            <img src="/images/osint-proverka.webp" alt="Отличие от обычной лидогенерации" width="1000" height="1000" decoding="async">
+            <img src="/images/osint-cel.webp" alt="Точечный поиск ЛПР" width="1000" height="1000" decoding="async">
           </div>
         </div>
 
@@ -847,33 +872,74 @@ document.querySelectorAll('.why-card, .price-card').forEach(card => {
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "name": "HuntedLead",
-  "url": "https://huntedlead.ru",
-  "description": "OSINT-лидогенерация для B2B: находим email, телефоны и LinkedIn руководителей целевых компаний.",
-  "areaServed": "RU",
-  "availableLanguage": "Russian",
-  "priceRange": "от 65 000 ₽",
-  "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "Тарифы",
-    "itemListElement": [
-      {
-        "@type": "Offer",
-        "name": "Разогрев",
-        "price": "65000",
-        "priceCurrency": "RUB",
-        "description": "Проверка гипотезы: 50–100 верифицированных контактов ЛПРов"
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://huntedlead.ru/#organization",
+      "name": "HuntedLead",
+      "url": "https://huntedlead.ru/",
+      "description": "OSINT-лидогенерация для B2B: находим email, телефоны и LinkedIn руководителей целевых компаний.",
+      "logo": {
+        "@type": "ImageObject",
+        "@id": "https://huntedlead.ru/#logo",
+        "url": "https://huntedlead.ru/logo.svg",
+        "contentUrl": "https://huntedlead.ru/logo.svg",
+        "caption": "HuntedLead"
       },
-      {
-        "@type": "Offer",
-        "name": "Охота всерьёз",
-        "price": "150000",
-        "priceCurrency": "RUB",
-        "description": "Системная работа: до 300 контактов + непрерывный поток диалогов"
+      "image": {
+        "@id": "https://huntedlead.ru/#logo"
+      },
+      "telephone": "+7 993 966-15-61",
+      "email": "withmashed03@gmail.com",
+      "areaServed": {
+        "@type": "Country",
+        "name": "Россия"
+      },
+      "availableLanguage": "Russian",
+      "priceRange": "от 65 000 ₽",
+      "sameAs": [
+        "https://t.me/mmashed"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Тарифы",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "name": "Разогрев",
+            "price": "65000",
+            "priceCurrency": "RUB",
+            "description": "Проверка гипотезы: 50–100 верифицированных контактов ЛПРов"
+          },
+          {
+            "@type": "Offer",
+            "name": "Охота всерьёз",
+            "price": "150000",
+            "priceCurrency": "RUB",
+            "description": "Системная работа: до 300 контактов + непрерывный поток диалогов"
+          },
+          {
+            "@type": "Offer",
+            "name": "Безлимитный сезон",
+            "priceCurrency": "RUB",
+            "description": "Выделенная команда под ваш поток: объём и условия обсуждаются под задачу",
+            "availability": "https://schema.org/InStock"
+          }
+        ]
       }
-    ]
-  }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://huntedlead.ru/#website",
+      "url": "https://huntedlead.ru/",
+      "name": "HuntedLead",
+      "description": "OSINT-лидогенерация и B2B-аутрич",
+      "publisher": {
+        "@id": "https://huntedlead.ru/#organization"
+      },
+      "inLanguage": "ru-RU"
+    }
+  ]
 }
 </script>
 

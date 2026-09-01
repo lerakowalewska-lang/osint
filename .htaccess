@@ -9,13 +9,24 @@ RewriteRule ^ https://huntedlead.ru%{REQUEST_URI} [R=301,L]
 RewriteCond %{HTTPS} off
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
+# ===== Переезд блога на WordPress =====
+# Старые статические статьи → их аналоги в WP. Один хоп, .html-вариант тоже ловим.
+RewriteRule ^blog-(osint-marketing|osint-ethics|email-outreach|lead-search|research-tools)(\.html)?/?$ /blog/$1 [R=301,L]
+
+# Старая статическая лента блога → лента WordPress
+RewriteRule ^blog\.html$ /blog [R=301,L]
+
+# ===== Канонизация URL: /page.html → /page =====
+# Условие на THE_REQUEST, а не на REQUEST_URI: иначе внутренний rewrite
+# "extensionless → .html" ниже снова попадёт сюда и получится редирект-петля.
+# wp-blog/ исключён — там свои служебные .html.
+RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
+RewriteRule ^ / [R=301,L]
+RewriteCond %{THE_REQUEST} \s/+(?!wp-blog/)([^?\s]*?)\.html[\s?] [NC]
+RewriteRule ^ /%1 [R=301,L]
+
 # Route /api/send-lead to PHP handler
 RewriteRule ^api/send-lead$ /api/send-lead.php [L]
-
-# ВРЕМЕННО: прямой доступ к установщику WordPress (пока не готов финальный маппинг /blog).
-# DirectorySlash Off выше не даёт Apache самому дописать слэш и отдать wp-blog/index.php,
-# поэтому маршрутизируем явно, в обход directory-index и правила "strip trailing slash".
-RewriteRule ^wp-blog/?$ /wp-blog/index.php [L]
 
 # Служебные пути WordPress в корне домена (нужны, т.к. "Адрес сайта" = корень,
 # поэтому REST API/логин/ассеты WP запрашиваются без префикса /wp-blog).
@@ -23,7 +34,11 @@ RewriteRule ^wp-(admin|content|includes|json)(/.*)?$ /wp-blog/wp-$1$2 [L]
 RewriteRule ^wp-login\.php$ /wp-blog/wp-login.php [L]
 RewriteRule ^xmlrpc\.php$ /wp-blog/xmlrpc.php [L]
 
-# Лента блога и статьи — из WordPress (перекрывает старую статику blog.html на время переноса)
+# RSS-ленты. WordPress объявляет их в <head> по корню домена (/feed, /comments/feed),
+# поэтому корневые пути тоже нужно отдавать WordPress, иначе ссылки ведут в 404.
+RewriteRule ^(comments/)?feed/?$ /wp-blog/index.php [L]
+
+# Лента блога и статьи — из WordPress
 RewriteRule ^blog(/.*)?$ /wp-blog/index.php [L]
 
 # Serve .html files without extension
@@ -37,3 +52,19 @@ RewriteRule ^(.+)/$ /$1 [R=301,L]
 
 # 404 page
 ErrorDocument 404 /404.html
+
+# ===== Заголовки =====
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  # HSTS с коротким max-age (1 час). Поднять до 31536000 только после того,
+  # как убедимся, что весь сайт и поддомены стабильно работают по https.
+  Header always set Strict-Transport-Security "max-age=3600"
+
+  # HTML отдаётся без Cache-Control — браузер кеширует эвристически и показывает
+  # устаревшие страницы. Короткий срок + revalidate.
+  <FilesMatch "\.(html|php)$">
+    Header set Cache-Control "public, max-age=600, must-revalidate"
+  </FilesMatch>
+</IfModule>

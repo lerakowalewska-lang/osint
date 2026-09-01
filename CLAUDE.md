@@ -5,26 +5,29 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**HuntedLead** — многостраничный маркетинговый сайт для OSINT-лидогенерации. Развёртывается на Vercel как статика + одна Serverless Function. Сайт SEO-оптимизирован: отраслевые страницы под ключевые запросы, JSON-LD схемы, canonical URL, sitemap.
+**HuntedLead** — многостраничный маркетинговый сайт для OSINT-лидогенерации. Хостится на Beget (Apache + PHP): статические HTML-страницы, один PHP-обработчик формы и WordPress в подпапке под блог. Маршрутизация — через `.htaccess`. Сайт SEO-оптимизирован: отраслевые страницы под ключевые запросы, JSON-LD схемы, canonical URL, sitemap.
+
+> `vercel.json` в корне — рудимент от прежнего хостинга и ни на что не влияет. Реальная маршрутизация описана только в `.htaccess`.
 
 ## Architecture
 
 Проект минималистичен и не использует фреймворков или систем сборки:
 
 - `index.html` — главная страница: разметка и весь клиентский JavaScript в одном файле
-- `industry-it.html` — отраслевая страница для IT-компаний и SaaS (`/industry-it`)
+- `industry-*.html` — шесть отраслевых страниц (`it`, `manufacturing`, `distributors`, `consulting`, `hrtech`, `logistics`)
+- `outreach.html` — страница услуги аутрича (`/outreach`)
+- `wp-blog/` — WordPress под блог; в git лежит только кастомная тема `wp-content/themes/huntedlead`
 - `404.html` — кастомная страница ошибки 404 (помечена `noindex`)
 - `styles/main.css` — все CSS-стили (CSS custom properties, без препроцессоров); используется на всех страницах
-- `api/send-lead.js` — единственная Serverless Function (Vercel), обрабатывает POST-запрос с формы и отправляет заявку в Telegram-бот; использует ES Module синтаксис (`export default`)
-- `images/` — изображения для секции features: `разведка.png`, `проверка.png`, `цель.png`
+- `api/send-lead.php` — обработчик формы: принимает POST и отправляет заявку в Telegram-бот. Токен — в `api/tg-config.php` (в git только `tg-config.example.php`)
+- `images/` — `osint-razvedka.webp`, `osint-proverka.webp`, `osint-cel.webp` для секции features (WebP с альфа-каналом, 1000×1000); `images/og/` — карточки og:image 1200×630 для коммерческих страниц
 - `logo.svg` — единственный логотип, всегда использовать только его
 - `sitemap.xml` / `robots.txt` — SEO-файлы в корне; `robots.txt` статический, `sitemap.xml` генерируется скриптом
-- `scripts/generate-sitemap.js` — генератор sitemap: редактировать массив `pages` внутри, затем запустить `node scripts/generate-sitemap.js`
+- `scripts/generate-sitemap.mjs` — генератор sitemap. Статические страницы — в массиве `staticPages` внутри файла; статьи блога подтягиваются из WordPress через REST API, руками их добавлять не нужно. Запуск: `node scripts/generate-sitemap.mjs` (нужен доступ в сеть; при ошибке скрипт падает и НЕ перезаписывает sitemap.xml)
 
 **Data flow заявки (форма на каждой странице):**
 ```
-Форма (любая страница) → POST /api/send-lead → Telegram Bot API → Telegram-чат
-                       → web3forms API (резервный канал)
+Форма (любая страница) → POST /api/send-lead → api/send-lead.php → Telegram Bot API → Telegram-чат
 ```
 Поле `source` в теле запроса передаёт идентификатор страницы (например `'industry-it'`), чтобы в Telegram было видно, откуда пришла заявка.
 
@@ -34,7 +37,16 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 |---|---|---|---|
 | `index.html` | `/` | Живая | Да |
 | `industry-it.html` | `/industry-it` | Живая | Да |
+| `industry-manufacturing.html` | `/industry-manufacturing` | Живая | Да |
+| `industry-distributors.html` | `/industry-distributors` | Живая | Да |
+| `industry-consulting.html` | `/industry-consulting` | Живая | Да |
+| `industry-hrtech.html` | `/industry-hrtech` | Живая | Да |
+| `industry-logistics.html` | `/industry-logistics` | Живая | Да |
+| `outreach.html` | `/outreach` | Живая | Да |
+| WordPress | `/blog`, `/blog/<slug>` | Живая | Да |
 | `404.html` | `/404` | Живая | Нет (noindex) |
+
+Статических файлов блога (`blog.html`, `blog-*.html`) больше нет: статьи перенесены в WordPress, старые URL отдают 301 из `.htaccess`. Не воссоздавать.
 
 ### Структура главной страницы (`index.html`)
 
@@ -72,27 +84,34 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Development
 
-Нет системы сборки и пакетных зависимостей. Для локальной разработки:
+Нет системы сборки и пакетных зависимостей.
+
+Страницы используют абсолютные пути (`/images/...`, `/industry-it`), поэтому открывать
+`index.html` через `file://` бесполезно — поднимите простой HTTP-сервер из корня репозитория:
 
 ```bash
-# Установить Vercel CLI (один раз)
-npm i -g vercel
-
-# Запустить локальный dev-сервер с поддержкой /api/ маршрутов
-vercel dev
+python -m http.server 8765
+# затем http://127.0.0.1:8765/index.html
 ```
 
-Без Vercel CLI можно открывать `index.html` напрямую в браузере — всё работает, кроме отправки формы (нет `/api/`).
+Так работает вся вёрстка и клиентский JS. Не работают только вещи, которые
+обеспечивает Apache на проде: маршруты без `.html`, редиректы, `/api/send-lead`
+и весь `/blog` (WordPress).
+
+### Деплой
+
+Файлы выкладываются на Beget в корень сайта. Отдельного шага сборки нет,
+но при изменении списка страниц надо перегенерировать sitemap:
+
+```bash
+node scripts/generate-sitemap.mjs
+```
 
 ## Environment Variables
 
-Для работы функции `api/send-lead.js` нужны переменные окружения (задаются в Vercel Dashboard или `.env.local` для `vercel dev`):
-
-| Переменная | Описание |
-|---|---|
-| `TG_BOT_TOKEN` | Токен Telegram-бота |
-
-`TG_CHAT_ID` захардкожен в `api/send-lead.js` — `-5268453636`.
+Токен Telegram-бота лежит в `api/tg-config.php` на сервере (в git его нет —
+есть только `api/tg-config.example.php`). `TG_CHAT_ID` захардкожен в
+`api/send-lead.php`.
 
 ## CSS Design Tokens
 
@@ -112,6 +131,15 @@ vercel dev
 Шрифты: Onest (заголовки и текст), JetBrains Mono (моно) — Google Fonts.
 
 ## Key Implementation Details
+
+**Навигация** — разметка меню лежит статически в каждой HTML-странице и в
+`wp-blog/wp-content/themes/huntedlead/header.php`. `nav.js` отвечает только за
+поведение: дропдаун «Ниши», бургер, залипающая шапка, плавный скролл по якорям.
+Раньше меню собиралось JS-ом — из-за этого в исходном HTML главной была всего
+одна внутренняя ссылка, и краулеры (в первую очередь Яндекс) не видели нишевые
+страницы. **При добавлении нового пункта меню его нужно добавить в 9 местах:**
+8 статических страниц + `header.php` темы блога.
+
 
 **Фоновая анимация** — `<canvas id="bg-canvas">` с 3D-particle эффектом на нативном Canvas API.
 

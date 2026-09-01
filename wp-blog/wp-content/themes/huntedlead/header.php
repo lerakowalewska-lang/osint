@@ -1,6 +1,6 @@
 <?php if (!defined('ABSPATH')) exit; ?>
 <!DOCTYPE html>
-<html lang="ru" <?php language_attributes(); ?>>
+<html <?php language_attributes(); ?>>
 <head>
 <meta charset="<?php bloginfo('charset'); ?>">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,7 +38,39 @@
       HuntedLead
     </a>
     <nav>
-      <ul class="nav-links" id="navLinks"></ul>
+      <?php
+      // Навигация отдаётся в разметке, а не собирается nav.js: краулерам (в первую
+      // очередь Яндексу) JS-меню видно плохо, а это единственные ссылки на нишевые
+      // страницы. Якоря ведут на главную — на страницах блога этих секций нет.
+      $hl_home = esc_url(home_url('/'));
+      $hl_niches = [
+          '/industry-it' => 'IT и SaaS',
+          '/industry-manufacturing' => 'Производствам',
+          '/industry-distributors' => 'Дистрибьюторам',
+          '/industry-consulting' => 'Консалтинг',
+          '/industry-hrtech' => 'HR-tech',
+          '/industry-logistics' => 'Логистика и ВЭД',
+      ];
+      ?>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="<?php echo $hl_home; ?>#how">Как работаем</a></li>
+        <li><a href="<?php echo esc_url(home_url('/outreach')); ?>">Аутрич</a></li>
+        <li class="nav-dropdown">
+          <button class="nav-dropdown-btn" aria-expanded="false" aria-haspopup="true">
+            Ниши
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <ul class="nav-dropdown-menu" role="menu">
+            <?php foreach ($hl_niches as $hl_path => $hl_label) : ?>
+            <li role="none"><a href="<?php echo esc_url(home_url($hl_path)); ?>" role="menuitem"><?php echo esc_html($hl_label); ?></a></li>
+            <?php endforeach; ?>
+          </ul>
+        </li>
+        <li><a href="<?php echo esc_url(home_url('/blog')); ?>"<?php echo (is_home() || is_singular('post')) ? ' aria-current="page"' : ''; ?>>Блог</a></li>
+        <li><a href="<?php echo $hl_home; ?>#faq">Вопросы</a></li>
+        <li><a href="<?php echo $hl_home; ?>#pricing">Тарифы</a></li>
+        <li><a href="<?php echo $hl_home; ?>#contact" class="nav-cta">Оставить заявку</a></li>
+      </ul>
     </nav>
     <button class="mobile-toggle" id="mobileToggle" aria-label="Меню">
       <span></span><span></span><span></span>

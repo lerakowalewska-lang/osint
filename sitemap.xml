@@ -50,37 +50,97 @@
   </url>
   <url>
     <loc>https://huntedlead.ru/blog</loc>
-    <lastmod>2026-06-24</lastmod>
+    <lastmod>2026-08-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://huntedlead.ru/blog-osint-marketing</loc>
-    <lastmod>2026-06-24</lastmod>
+    <loc>https://huntedlead.ru/blog/konkurentnaya-razvedka-b2b</loc>
+    <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://huntedlead.ru/blog-osint-ethics</loc>
-    <lastmod>2026-06-24</lastmod>
+    <loc>https://huntedlead.ru/blog/cold-calls-b2b</loc>
+    <lastmod>2026-08-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://huntedlead.ru/blog-email-outreach</loc>
-    <lastmod>2026-06-24</lastmod>
+    <loc>https://huntedlead.ru/blog/proverka-kandidata</loc>
+    <lastmod>2026-08-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://huntedlead.ru/blog-lead-search</loc>
-    <lastmod>2026-06-24</lastmod>
+    <loc>https://huntedlead.ru/blog/dolzhnaya-osmotritelnost</loc>
+    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://huntedlead.ru/blog-research-tools</loc>
-    <lastmod>2026-06-24</lastmod>
+    <loc>https://huntedlead.ru/blog/osint-kontragent</loc>
+    <lastmod>2026-08-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://huntedlead.ru/blog/telegram-outreach</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://huntedlead.ru/blog/icp-b2b</loc>
+    <lastmod>2026-08-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://huntedlead.ru/blog/linkedin-outreach</loc>
+    <lastmod>2026-08-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://huntedlead.ru/blog/research-tools</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://huntedlead.ru/blog/contact-finders</loc>
+    <lastmod>2026-08-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://huntedlead.ru/blog/lead-search</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://huntedlead.ru/blog/email-outreach</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://huntedlead.ru/blog/osint-ethics</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://huntedlead.ru/blog/osint-152fz</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://huntedlead.ru/blog/osint-marketing</loc>
+    <lastmod>2026-08-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>

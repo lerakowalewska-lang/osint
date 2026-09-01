@@ -2094,3 +2094,68 @@ section {
   .article-cta { padding: 1.5rem; }
 }
 
+
+/* ===== СМЕЖНЫЕ НИШИ ===== */
+/* Контекстные перелинковки между отраслевыми страницами: до этого единственными
+   ссылками между ними было меню, и то собиралось JS-ом. */
+.related-niches {
+  /* Глобальное правило section {min-height:100vh; display:flex} растягивает
+     любой <section> на весь экран — этому блоку нужна своя высота. */
+  min-height: 0;
+  display: block;
+  padding: 60px 2rem 20px;
+}
+
+.related-niches-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.related-niches-title {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin: 0 0 18px;
+}
+
+.related-niches-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  row-gap: 10px;
+  column-gap: 10px;
+}
+
+.related-niches-list a {
+  display: inline-block;
+  padding: 9px 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 14.5px;
+  line-height: 1.4;
+  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.related-niches-list a:hover,
+.related-niches-list a:focus-visible {
+  border-color: var(--border-bright);
+  background: var(--bg-card-hover);
+  color: var(--accent-blue);
+}
+
+@media (max-width: 600px) {
+  .related-niches {
+    padding: 40px 0 12px;
+  }
+  .related-niches-list a {
+    font-size: 14px;
+    padding: 8px 14px;
+  }
+}
